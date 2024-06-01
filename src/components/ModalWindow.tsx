@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import { citySize } from "../assets/types";
+import ClickOutside from "./ClickOutside";
 
 type modalType = {
   title: string;
@@ -40,13 +41,19 @@ export function ModalWindow(props: modalType) {
     console.warn({ name, region, size, population, description });
   };
 
+  const handleClickOutside = () => {
+    setOpen(false);
+  };
+
+  const ref = ClickOutside(handleClickOutside);
+
   return (
     <>
       <button
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
         onClick={() => {
-          setOpen(!open);
+          setOpen(true);
         }}
       >
         {props.title} {open}
@@ -54,10 +61,13 @@ export function ModalWindow(props: modalType) {
       {open ? (
         <>
           <div
-            id="#submitForm"
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            id="submitForm"
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none "
           >
-            <div className="relative p-4 w-full max-w-md max-h-full">
+            <div
+              ref={ref}
+              className="relative p-4 w-full max-w-md max-h-full z-50"
+            >
               <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -67,6 +77,9 @@ export function ModalWindow(props: modalType) {
                     type="button"
                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-toggle="crud-modal"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
                   >
                     <svg
                       className="w-3 h-3"
@@ -202,10 +215,7 @@ export function ModalWindow(props: modalType) {
               </div>
             </div>
           </div>
-          <div
-            className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"
-            onClick={() => setOpen(false)}
-          ></div>{" "}
+          <div className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
         </>
       ) : null}
     </>
