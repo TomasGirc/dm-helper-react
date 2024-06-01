@@ -1,6 +1,9 @@
 import { cityType } from "../assets/types";
 
-export default function CityCard(props: { city: cityType }) {
+export default function CityCard(props: {
+  city: cityType;
+  deleteCity: (data: number) => void;
+}) {
   return (
     <div
       key={props.city.name}
@@ -11,6 +14,8 @@ export default function CityCard(props: { city: cityType }) {
       <p className="font-extrabold">{props.city.size}</p>
       <p className="font-extrabold">{props.city.population}</p>
       <p className="font-extrabold">{props.city.description}</p>
+
+      <button onClick={() => props.deleteCity(props.city.id)}>Delete</button>
     </div>
   );
 }

@@ -73,14 +73,29 @@ const CitysPage = () => {
     setCityList([...cityList, data]);
   };
 
+  const cityId = async (data: number) => {
+    await fetch(`http://localhost:3000/city/${data}`, {
+      method: "DELETE",
+    }).then();
+    await fetch("http://localhost:3000/city", {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((results) => {
+        console.warn(results);
+        setCityList(results);
+      })
+      .catch((e) => console.warn(e));
+  };
+
   const listOfCitys = cityList
     .filter((filter) =>
       filter.name.toLocaleLowerCase().includes(cityFilter.toLocaleLowerCase())
     )
     .map((city, index) => (
-      <Link to={`/city/${index}`} key={index + city.name}>
-        <CityCard city={city} key={index + city.name} />
-      </Link>
+      // <Link to={`/city/${index}`} key={index + city.name}>
+      <CityCard city={city} key={index + city.name} deleteCity={cityId} />
+      // </Link>
     ));
 
   return (
