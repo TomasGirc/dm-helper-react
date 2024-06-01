@@ -14,11 +14,7 @@ const proxyCity: cityType[] = [
   },
 ];
 
-type CityPageProps = {
-  citydata: (data: cityType[]) => void;
-};
-
-const CitysPage: React.FC<CityPageProps> = ({ citydata }) => {
+const CitysPage = () => {
   const [cityName, setCityName] = useState<string>("");
   const [cityList, setCityList] = useState<cityType[]>(proxyCity);
   const [cityFilter, setCityFilter] = useState("");
@@ -58,10 +54,6 @@ const CitysPage: React.FC<CityPageProps> = ({ citydata }) => {
           console.warn(typeof results);
         })
         .catch((e) => console.warn(e));
-      // setCityList([
-      //   ...cityList,
-      //   { name: cityName, region: "Volda", size: "Village", population: 1000 },
-      // ]);
       setCityName("");
     }
   }
@@ -77,9 +69,9 @@ const CitysPage: React.FC<CityPageProps> = ({ citydata }) => {
       .catch((e) => console.warn(e));
   }, []);
 
-  useEffect(() => {
-    citydata(cityList);
-  }, [cityList, citydata]);
+  const data_from_modal = (data: cityType) => {
+    setCityList([...cityList, data]);
+  };
 
   const listOfCitys = cityList
     .filter((filter) =>
@@ -93,7 +85,7 @@ const CitysPage: React.FC<CityPageProps> = ({ citydata }) => {
 
   return (
     <div className="m-2">
-      <ModalWindow title={"Add new city"} />
+      <ModalWindow title={"Add new city"} citydata={data_from_modal} />
       <div className="flex mb-1">
         <form onSubmit={addCityToTheList} className="mr-1 ">
           <input

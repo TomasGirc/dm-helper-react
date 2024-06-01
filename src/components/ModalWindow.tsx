@@ -1,9 +1,10 @@
 import { SyntheticEvent, useState } from "react";
-import { citySize } from "../assets/types";
+import { citySize, cityType } from "../assets/types";
 import ClickOutside from "./ClickOutside";
 
 type modalType = {
   title: string;
+  citydata: (data: cityType) => void;
 };
 
 export function ModalWindow(props: modalType) {
@@ -31,14 +32,17 @@ export function ModalWindow(props: modalType) {
         description: description,
       }),
     })
-      // .then((data) => data.json())
-      // .then((results) => {
-      //   setCityList([...cityList, results]);
-      //   console.warn(results);
-      //   console.warn(typeof results);
-      // })
+      .then((data) => data.json())
+      .then((results) => {
+        props.citydata(results);
+        setOpen(false);
+        setName("");
+        setRegion("");
+        setSize("Village");
+        setPopulation(10);
+        setDescription("");
+      })
       .catch((e) => console.warn(e));
-    console.warn({ name, region, size, population, description });
   };
 
   const handleClickOutside = () => {
