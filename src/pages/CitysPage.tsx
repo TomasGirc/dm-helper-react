@@ -1,8 +1,8 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
 import { cityType } from "../assets/types";
-import { Link } from "react-router-dom";
-import { ModalWindow } from "../components/ModalWindow";
+// import { Link } from "react-router-dom";
+import { CityWindow } from "../components/CityModalWindow";
 
 const proxyCity: cityType[] = [
   {
@@ -19,9 +19,9 @@ const CitysPage = () => {
   const [cityList, setCityList] = useState<cityType[]>(proxyCity);
   const [cityFilter, setCityFilter] = useState("");
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCityName(event.target.value);
-  }
+  };
 
   const searchByName = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.target.value.length > 1
@@ -29,9 +29,20 @@ const CitysPage = () => {
       : setCityFilter("");
   };
 
-  function addCityToTheList(
+  const fetchCityData = () => {
+    fetch("http://localhost:3000/city", {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((results) => {
+        setCityList(results);
+      })
+      .catch((e) => console.warn(e));
+  };
+
+  const addCityToTheList = (
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
-  ) {
+  ) => {
     event.preventDefault();
     if (cityName.length > 2) {
       fetch("http://localhost:3000/city", {
@@ -56,18 +67,7 @@ const CitysPage = () => {
         .catch((e) => console.warn(e));
       setCityName("");
     }
-  }
-
-  useEffect(() => {
-    fetch("http://localhost:3000/city", {
-      method: "GET",
-    })
-      .then((data) => data.json())
-      .then((results) => {
-        setCityList(results);
-      })
-      .catch((e) => console.warn(e));
-  }, []);
+  };
 
   const data_from_modal = (data: cityType) => {
     setCityList([...cityList, data]);
@@ -77,16 +77,12 @@ const CitysPage = () => {
     await fetch(`http://localhost:3000/city/${data}`, {
       method: "DELETE",
     }).then();
-    await fetch("http://localhost:3000/city", {
-      method: "GET",
-    })
-      .then((data) => data.json())
-      .then((results) => {
-        console.warn(results);
-        setCityList(results);
-      })
-      .catch((e) => console.warn(e));
+    fetchCityData();
   };
+
+  useEffect(() => {
+    fetchCityData();
+  }, []);
 
   const listOfCitys = cityList
     .filter((filter) =>
@@ -100,7 +96,7 @@ const CitysPage = () => {
 
   return (
     <div className="m-2">
-      <ModalWindow title={"Add new city"} citydata={data_from_modal} />
+      <CityWindow title={"Add new city"} citydata={data_from_modal} />
       <div className="flex mb-1">
         <form onSubmit={addCityToTheList} className="mr-1 ">
           <input

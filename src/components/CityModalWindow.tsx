@@ -7,7 +7,7 @@ type modalType = {
   citydata: (data: cityType) => void;
 };
 
-export function ModalWindow(props: modalType) {
+export function CityWindow(props: modalType) {
   const [open, setOpen] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [region, setRegion] = useState<string>("AS");
@@ -213,7 +213,7 @@ export function ModalWindow(props: modalType) {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    Add new product
+                    Add new city
                   </button>
                 </form>
               </div>
