@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { citySize, cityType } from "../assets/types";
 import ClickOutside from "./ClickOutside";
+import { requestAddressCity } from "../assets/requestInfo";
 
 type modalType = {
   title: string;
@@ -19,7 +20,7 @@ export function CityWindow(props: modalType) {
     e: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
     e.preventDefault();
-    fetch("http://localhost:3000/city", {
+    fetch(requestAddressCity, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

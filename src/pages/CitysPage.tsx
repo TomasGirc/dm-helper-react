@@ -3,6 +3,7 @@ import CityCard from "../components/CityCard";
 import { cityType } from "../assets/types";
 // import { Link } from "react-router-dom";
 import { CityWindow } from "../components/CityModalWindow";
+import { requestAddressCity } from "../assets/requestInfo";
 
 const proxyCity: cityType[] = [
   {
@@ -15,6 +16,7 @@ const proxyCity: cityType[] = [
 ];
 
 const CitysPage = () => {
+  const [loading, isLoading] = useState<boolean>(false);
   const [cityName, setCityName] = useState<string>("");
   const [cityList, setCityList] = useState<cityType[]>(proxyCity);
   const [cityFilter, setCityFilter] = useState("");
@@ -30,14 +32,16 @@ const CitysPage = () => {
   };
 
   const fetchCityData = () => {
-    fetch("http://localhost:3000/city", {
+    isLoading(false);
+    fetch(requestAddressCity, {
       method: "GET",
     })
       .then((data) => data.json())
       .then((results) => {
         setCityList(results);
       })
-      .catch((e) => console.warn(e));
+      .catch((e) => console.warn(e))
+      .finally(() => isLoading(true));
   };
 
   const addCityToTheList = (
@@ -45,7 +49,7 @@ const CitysPage = () => {
   ) => {
     event.preventDefault();
     if (cityName.length > 2) {
-      fetch("http://localhost:3000/city", {
+      fetch(requestAddressCity, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +78,7 @@ const CitysPage = () => {
   };
 
   const cityId = async (data: number) => {
-    await fetch(`http://localhost:3000/city/${data}`, {
+    await fetch(`${requestAddressCity + "/" + data}`, {
       method: "DELETE",
     }).then();
     fetchCityData();
@@ -95,33 +99,39 @@ const CitysPage = () => {
     ));
 
   return (
-    <div className="m-2">
-      <CityWindow title={"Add new city"} citydata={data_from_modal} />
-      <div className="flex mb-1">
-        <form onSubmit={addCityToTheList} className="mr-1 ">
+    <>
+      <div className="m-2">
+        <CityWindow title={"Add new city"} citydata={data_from_modal} />
+        <div className="flex mb-1">
+          <form onSubmit={addCityToTheList} className="mr-1 ">
+            <input
+              placeholder="Add city"
+              type="text"
+              id="new-todo-input"
+              className="input input__lg"
+              name="text"
+              autoComplete="off"
+              value={cityName}
+              onChange={handleChange}
+            />
+          </form>
           <input
-            placeholder="Add city"
+            placeholder="Search for city"
             type="text"
             id="new-todo-input"
             className="input input__lg"
             name="text"
             autoComplete="off"
-            value={cityName}
-            onChange={handleChange}
+            onChange={searchByName}
           />
-        </form>
-        <input
-          placeholder="Search for city"
-          type="text"
-          id="new-todo-input"
-          className="input input__lg"
-          name="text"
-          autoComplete="off"
-          onChange={searchByName}
-        />
+        </div>
+        {loading ? (
+          <div className="grid grid-cols-4 gap-4">{listOfCitys}</div>
+        ) : (
+          <div className="m-2">Loading</div>
+        )}
       </div>
-      <div className="grid grid-cols-4 gap-4">{listOfCitys}</div>
-    </div>
+    </>
   );
 };
 export default CitysPage;
