@@ -1,8 +1,6 @@
+import Button from "@mui/material/Button";
+
 const HomePage = () => {
-  return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
-  );
+  return <Button variant="contained">Hello world</Button>;
 };
 export default HomePage;
