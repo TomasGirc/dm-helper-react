@@ -105,7 +105,7 @@ export default function Navbar({ content }: any) {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              DM Helper
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">

@@ -11,7 +11,7 @@ type modalType = {
 export function CityWindow(props: modalType) {
   const [open, setOpen] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
-  const [region, setRegion] = useState<string>("AS");
+  const [region, setRegion] = useState<string>("Asena");
   const [size, setSize] = useState<citySize>("Village");
   const [population, setPopulation] = useState<number>(10);
   const [description, setDescription] = useState<string>("");
@@ -61,7 +61,7 @@ export function CityWindow(props: modalType) {
           setOpen(true);
         }}
       >
-        {props.title} {open}
+        {props.title}
       </button>
       {open ? (
         <>
@@ -139,8 +139,8 @@ export function CityWindow(props: modalType) {
                         value={region}
                         onChange={(e) => setRegion(e.target.value)}
                       >
-                        <option value="AS">Asena</option>
-                        <option value="KM">Kemet</option>
+                        <option value="Asena">Asena</option>
+                        <option value="Kemet">Kemet</option>
                       </select>
                     </div>
                     <div className="col-span-2 sm:col-span-1">
@@ -192,7 +192,7 @@ export function CityWindow(props: modalType) {
                         id="description"
                         rows={4}
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Write product description here"
+                        placeholder="Write city description here"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                       ></textarea>
