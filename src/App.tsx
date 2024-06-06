@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import CitysPage from "./pages/CitysPage";
 import PageNotFound from "./pages/PageNotFound";
 import CityPage from "./pages/CityPage";
+import TestPage from "./pages/TestPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const App = () => {
         <Route index element={<HomePage />} />
         <Route path="/city" element={<CitysPage />} />
         <Route path="/city/:cityId" element={<CityPage />} />
+        <Route path="/test" element={<TestPage />} />
       </Route>
     )
   );

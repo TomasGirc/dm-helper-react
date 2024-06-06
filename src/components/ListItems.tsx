@@ -28,12 +28,14 @@ export const mainListItems = (
         <ListItemText primary="Cities" />
       </ListItemButton>
     </NavLink>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
+    <NavLink to="/test">
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Testable components" />
+      </ListItemButton>
+    </NavLink>
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
