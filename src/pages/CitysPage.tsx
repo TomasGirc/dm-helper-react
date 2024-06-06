@@ -1,13 +1,8 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
 import { cityType } from "../assets/types";
-import { CityWindow } from "../components/CityModalWindow";
 import { requestAddressCity } from "../assets/requestInfo";
-import MaterialModal from "../components/ModalMaterial";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import FormControl from "@mui/material/FormControl";
+import CityModal from "../components/ModalMaterial";
 
 const proxyCity: cityType[] = [
   {
@@ -105,27 +100,10 @@ const CitysPage = () => {
   return (
     <>
       <div className="m-2">
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small-label">Age</InputLabel>
-          <Select
-            labelId="demo-select-small-label"
-            id="demo-select-small"
-            value={10}
-            label="Age"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-        <MaterialModal
+        <CityModal
           title={"Add new city"}
           citydata={data_from_modal}
-        ></MaterialModal>
-        <CityWindow title={"Add new city"} citydata={data_from_modal} />
+        ></CityModal>
         <div className="flex mb-1">
           <form onSubmit={addCityToTheList} className="mr-1 ">
             <input
