@@ -11,6 +11,7 @@ import CitysPage from "./pages/CitysPage";
 import PageNotFound from "./pages/PageNotFound";
 import CityPage from "./pages/CityPage";
 import TestPage from "./pages/TestPage";
+import CharacterPage from "./pages/CharacterPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/city" element={<CitysPage />} />
         <Route path="/city/:cityId" element={<CityPage />} />
         <Route path="/test" element={<TestPage />} />
+        <Route path="/character/:characterId" element={<CharacterPage />} />
       </Route>
     )
   );

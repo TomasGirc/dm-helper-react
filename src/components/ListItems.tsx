@@ -36,12 +36,14 @@ export const mainListItems = (
         <ListItemText primary="Testable components" />
       </ListItemButton>
     </NavLink>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
+    <NavLink to="/character/1">
+      <ListItemButton>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Character" />
+      </ListItemButton>
+    </NavLink>
     <ListItemButton>
       <ListItemIcon>
         <LayersIcon />

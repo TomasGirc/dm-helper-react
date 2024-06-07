@@ -147,7 +147,7 @@ export default function Navbar({ content }: any) {
           }}
         >
           <Toolbar />
-          <Container maxWidth={false}>
+          <Container className="m-5 p-0" maxWidth={false}>
             <Grid>{content}</Grid>
           </Container>
         </Box>
