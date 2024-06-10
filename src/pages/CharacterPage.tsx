@@ -1,12 +1,5 @@
-import {
-  Box,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
-} from "@mui/material";
+import { Box, Divider, Grid } from "@mui/material";
+import ModalInventory from "../components/ModalInventory";
 
 export default function CharacterPage() {
   return (
@@ -39,9 +32,10 @@ export default function CharacterPage() {
             </Grid>
           </Grid>
         </Grid>
-        <Divider>Equipment</Divider>
+        <Divider>Inventory</Divider>
         <Grid container spacing={2}>
           <Grid item lg={4} sm={12} xs={12}>
+            <Divider>Equipment</Divider>
             <Grid container spacing={3}>
               <Grid item lg={4} xs={4}></Grid>
               <Grid item lg={4} xs={4}>
@@ -57,6 +51,7 @@ export default function CharacterPage() {
               </Grid>
               <Grid item lg={4} xs={4}></Grid>
             </Grid>
+
             <Grid container spacing={3}>
               <Grid container spacing={1} item lg={4} xs={4}>
                 <Grid item lg={12} xs={12}>
@@ -129,33 +124,13 @@ export default function CharacterPage() {
               <Grid container spacing={1} item lg={4} xs={4}></Grid>
             </Grid>
           </Grid>
+          <Grid item lg={8} sm={12} xs={12}>
+            <Divider>Backpack</Divider>
+          </Grid>
         </Grid>
       </Grid>
       <Grid item xs={4}>
-        <List
-          sx={{
-            width: "100%",
-            bgcolor: "background.paper",
-            position: "relative",
-            overflow: "auto",
-            maxHeight: 200,
-            "& ul": { padding: 0 },
-          }}
-          subheader={<li />}
-        >
-          {[0, 1, 2, 3, 4, 5, 6, 7].map((sectionId) => (
-            <li key={`section-${sectionId}`}>
-              <ul>
-                <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
-                {[0, 1, 2, 3, 4].map((item) => (
-                  <ListItem key={`item-${sectionId}-${item}`}>
-                    <ListItemText primary={`Item ${item}`} />
-                  </ListItem>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </List>
+        <ModalInventory></ModalInventory>
       </Grid>
     </Grid>
   );

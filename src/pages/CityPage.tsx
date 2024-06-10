@@ -1,3 +1,5 @@
+import CitysPage from "./CitysPage";
+
 export default function CityPage() {
-  return <div>CityPage</div>;
+  return <CitysPage></CitysPage>;
 }
