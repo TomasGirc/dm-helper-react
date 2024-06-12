@@ -1,5 +1,6 @@
 import { Box, Divider, Grid } from "@mui/material";
 import ModalInventory from "../components/ModalInventory";
+import TableOfItems from "../components/TableOfItems";
 
 export default function CharacterPage() {
   return (
@@ -126,11 +127,12 @@ export default function CharacterPage() {
           </Grid>
           <Grid item lg={8} sm={12} xs={12}>
             <Divider>Backpack</Divider>
+            <TableOfItems />
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={4}>
-        <ModalInventory></ModalInventory>
+        <ModalInventory content={<TableOfItems />}></ModalInventory>
       </Grid>
     </Grid>
   );
