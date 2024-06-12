@@ -44,12 +44,14 @@ export const mainListItems = (
         <ListItemText primary="Character" />
       </ListItemButton>
     </NavLink>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton>
+    <NavLink to="/items">
+      <ListItemButton>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Items" />
+      </ListItemButton>
+    </NavLink>
   </>
 );
 

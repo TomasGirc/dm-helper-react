@@ -27,11 +27,11 @@ describe("Primary list item", () => {
     );
     expect(getByText("Character")).toBeTruthy();
   });
-  it("Displays Integrations in the list", () => {
+  it("Displays items in the list", () => {
     const { getByText } = render(
       <BrowserRouter>{mainListItems}</BrowserRouter>
     );
-    expect(getByText("Integrations")).toBeTruthy();
+    expect(getByText("Items")).toBeTruthy();
   });
 });
 

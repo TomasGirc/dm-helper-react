@@ -12,6 +12,7 @@ import PageNotFound from "./pages/PageNotFound";
 import CityPage from "./pages/CityPage";
 import TestPage from "./pages/TestPage";
 import CharacterPage from "./pages/CharacterPage";
+import ItemPage from "./pages/ItemPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -22,6 +23,8 @@ const App = () => {
         <Route path="/city/:cityId" element={<CityPage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/character/:characterId" element={<CharacterPage />} />
+        <Route path="/items" element={<ItemPage />} />
+        {/* <Route path="/item/:characterId" element={<CharacterPage />} /> */}
       </Route>
     )
   );

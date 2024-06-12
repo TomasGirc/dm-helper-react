@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1718101386574" clover="3.2.0">
-  <project timestamp="1718101386574" name="All files">
+<coverage generated="1718175173126" clover="3.2.0">
+  <project timestamp="1718175173127" name="All files">
     <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="8" coveredelements="8" complexity="0" loc="5" ncloc="5" packages="2" files="3" classes="3"/>
     <package name="components">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -12,7 +12,7 @@
       <file name="ListItems.tsx" path="D:\Programing\dm-helper-react\src\components\ListItems.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pages">
