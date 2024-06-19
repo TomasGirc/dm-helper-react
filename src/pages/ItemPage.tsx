@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Box,
+  Button,
   Collapse,
   IconButton,
   Paper,
@@ -14,45 +15,45 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useEffect, useState } from "react";
+import { requestItems } from "../assets/requestInfo";
+import ItemModal from "../components/ItemModal";
 
-function createData(
-  name: string,
-  rarity: number,
-  type: number,
-  keywords: number,
-  requirements: number,
-  price: number
-) {
-  return {
-    name,
-    rarity,
-    type,
-    keywords,
-    requirements,
-    price,
-    description: [
-      {
-        date: "2020-01-05",
-        customerId: "11091700",
-        amount: 3,
-      },
-      {
-        date: "2020-01-02",
-        customerId: "Anonymous",
-        amount: 1,
-      },
-    ],
-  };
-}
+type itemType = {
+  id?: number;
+  name: string;
+  rarity: string;
+  type: string;
+  keywords: string[];
+  requirements: string[];
+  price: number;
+  description: string;
+};
 
-function Row(props: { row: ReturnType<typeof createData> }) {
+const proxyItem: itemType[] = [
+  {
+    id: 1,
+    name: "The first rod",
+    rarity: "Legendary",
+    type: "Rod",
+    keywords: ["Rod", "Magical", "Wood", "Lost"],
+    requirements: ["Intelect", "Magic", "Narure"],
+    price: 10000,
+    description: "Test",
+    // description: {
+    //   changes: "Once",
+    //   lore: "Legendary first staff",
+    // },
+  },
+];
+
+function Row(props: { row: itemType; index: number }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
+      <TableRow key={row.name} sx={{ "& > *": { borderBottom: "unset" } }}>
+        <TableCell key={props.index + "open"}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -61,20 +62,28 @@ function Row(props: { row: ReturnType<typeof createData> }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell key={props.index + "name"} component="th" scope="row">
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.rarity}</TableCell>
-        <TableCell align="right">{row.type}</TableCell>
-        <TableCell align="right">{row.keywords}</TableCell>
-        <TableCell align="right">{row.requirements}</TableCell>
+        <TableCell key={props.index + "rarity"} align="right">
+          {row.rarity}
+        </TableCell>
+        <TableCell key={props.index + "type"} align="right">
+          {row.type}
+        </TableCell>
+        <TableCell key={props.index + "keywords"} align="right">
+          {row.keywords}
+        </TableCell>
+        <TableCell key={props.index + "requirements"} align="right">
+          {row.requirements}
+        </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow key={row.name + 1}>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                description
+                Description
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
@@ -86,7 +95,13 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.description.map((descriptionRow) => (
+                  <TableRow key={row.description + props.index}>
+                    <TableCell component="th" scope="row">
+                      {row.description}
+                    </TableCell>
+                  </TableRow>
+
+                  {/* {row.description.map((descriptionRow) => (
                     <TableRow key={descriptionRow.date}>
                       <TableCell component="th" scope="row">
                         {descriptionRow.date}
@@ -100,7 +115,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
                           100}
                       </TableCell>
                     </TableRow>
-                  ))}
+                  ))} */}
                 </TableBody>
               </Table>
             </Box>
@@ -111,15 +126,31 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   );
 }
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 3.99),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 4.99),
-  createData("Eclair", 262, 16.0, 24, 6.0, 3.79),
-  createData("Cupcake", 305, 3.7, 67, 4.3, 2.5),
-  createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
-];
-
 export default function ItemPage() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [itemData, setItemData] = useState<itemType[]>(proxyItem);
+
+  const fetchItems = () => {
+    setLoading(false);
+    fetch(requestItems, {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((results) => {
+        setItemData(results);
+      })
+      .catch((e) => console.error("Item fetch threw error: ", e))
+      .finally(() => setLoading(true));
+  };
+
+  const data_from_modal = (data: any) => {
+    setItemData([...itemData, data]);
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -128,17 +159,19 @@ export default function ItemPage() {
             <TableCell />
             <TableCell>Name</TableCell>
             <TableCell align="right">rarity</TableCell>
-            <TableCell align="right">type&nbsp;(g)</TableCell>
-            <TableCell align="right">keywords&nbsp;(g)</TableCell>
-            <TableCell align="right">requirements&nbsp;(g)</TableCell>
+            <TableCell align="right">type</TableCell>
+            <TableCell align="right">keywords</TableCell>
+            <TableCell align="right">requirements</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
+          {itemData.map((row, index) => (
+            <Row key={index} row={row} index={index} />
           ))}
         </TableBody>
       </Table>
+      <ItemModal modalData={data_from_modal} title={"Add item"} />
+      {/* <Button onClick={addItemToTheList}>Add</Button> */}
     </TableContainer>
   );
 }

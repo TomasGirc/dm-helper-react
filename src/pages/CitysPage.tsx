@@ -1,8 +1,8 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 import CityCard from "../components/CityCard";
 import { cityType } from "../assets/types";
-import { requestAddressCity } from "../assets/requestInfo";
-import CityModal from "../components/ModalMaterial";
+import { requestCity } from "../assets/requestInfo";
+import CityModal from "../components/CityModal";
 
 const proxyCity: cityType[] = [
   {
@@ -32,14 +32,14 @@ const CitysPage = () => {
 
   const fetchCityData = () => {
     isLoading(false);
-    fetch(requestAddressCity, {
+    fetch(requestCity, {
       method: "GET",
     })
       .then((data) => data.json())
       .then((results) => {
         setCityList(results);
       })
-      .catch((e) => console.warn(e))
+      .catch((e) => console.error("City fetch threw error: ", e))
       .finally(() => isLoading(true));
   };
 
@@ -48,7 +48,7 @@ const CitysPage = () => {
   ) => {
     event.preventDefault();
     if (cityName.length > 2) {
-      fetch(requestAddressCity, {
+      fetch(requestCity, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,10 +64,8 @@ const CitysPage = () => {
         .then((data) => data.json())
         .then((results) => {
           setCityList([...cityList, results]);
-          console.warn(results);
-          console.warn(typeof results);
         })
-        .catch((e) => console.warn(e));
+        .catch((e) => console.error(e));
       setCityName("");
     }
   };
@@ -77,7 +75,7 @@ const CitysPage = () => {
   };
 
   const cityId = async (data: number) => {
-    await fetch(`${requestAddressCity + "/" + data}`, {
+    await fetch(`${requestCity + "/" + data}`, {
       method: "DELETE",
     }).then();
     fetchCityData();

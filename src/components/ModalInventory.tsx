@@ -1,5 +1,5 @@
 import { Box, Button, Modal } from "@mui/material";
-import React from "react";
+import React, { ReactNode } from "react";
 
 const style = {
   position: "absolute" as const,
@@ -14,7 +14,7 @@ const style = {
   pb: 3,
 };
 
-export default function ModalInventory({ content }: any) {
+export default function ModalInventory({ content }: { content: ReactNode }) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {

@@ -14,56 +14,51 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
     },
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
+function getStyles(name: string, chipData: readonly string[], theme: Theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      chipData.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-export default function TestPage() {
+export default function ChipInput({
+  options,
+  name,
+  changeData,
+}: {
+  options: string[];
+  name: string;
+  changeData: (data: string) => void;
+}) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [chipData, setChipData] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = async (event: SelectChangeEvent<typeof chipData>) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    await setChipData(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+    await changeData(value.toString());
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+    <>
+      <FormControl sx={{ width: "100%" }}>
+        <InputLabel id="demo-multiple-chip-label">{name}</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
-          value={personName}
+          value={chipData}
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
@@ -75,17 +70,17 @@ export default function TestPage() {
           )}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {options.map((name) => (
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, personName, theme)}
+              style={getStyles(name, chipData, theme)}
             >
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-    </div>
+    </>
   );
 }
