@@ -8,3 +8,14 @@ export type cityType = {
 };
 
 export type citySize = "Village" | "City" | "Capital";
+
+export type itemType = {
+  id?: number;
+  name: string;
+  rarity: string;
+  type: string;
+  keywords: string[];
+  requirements: string[];
+  price: number;
+  description: string;
+};

@@ -11,10 +11,11 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import ChipInput from "./ChipInput";
+import { itemType } from "../assets/types";
 
 type modalType = {
   title: string;
-  modalData: (data: any) => void;
+  modalData: (data: itemType) => void;
 };
 
 const style = {
