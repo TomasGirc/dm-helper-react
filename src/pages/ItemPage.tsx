@@ -27,7 +27,7 @@ const proxyItem: itemType[] = [
     rarity: "Legendary",
     type: "Rod",
     keywords: ["Rod", "Magical", "Wood", "Lost"],
-    requirements: ["Intelect", "Magic", "Narure"],
+    requirements: ["Intelect", "Magic", "Nature"],
     price: 10000,
     description: "Test",
   },
@@ -36,7 +36,7 @@ const proxyItem: itemType[] = [
 function Row(props: {
   row: itemType;
   index: number;
-  deleteCallback: (data: number) => void;
+  deleteCallback: (data: number | undefined) => void;
 }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -69,10 +69,7 @@ function Row(props: {
           {row.requirements}
         </TableCell>
         <TableCell key={props.index + "deletes"} align="right">
-          <Button
-            size="small"
-            onClick={() => props.deleteCallback(row.id || 0)}
-          >
+          <Button size="small" onClick={() => props.deleteCallback(row.id)}>
             Delete
           </Button>
         </TableCell>
