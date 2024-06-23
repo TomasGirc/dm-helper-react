@@ -62,7 +62,7 @@ export default function CharacterPage() {
                       height: 100,
                       width: 100,
                     }}
-                    alt="Helm"
+                    alt="ArmL"
                     src="https://media.istockphoto.com/id/1358237005/photo/medieval-sword-isolated-on-white-with-clipping-path.jpg?s=612x612&w=0&k=20&c=F-F2WN5_CBDM9T4ZvJPEZbmwdK-zOz2YtnhXX3VKOGI="
                   />
                 </Grid>
@@ -75,7 +75,7 @@ export default function CharacterPage() {
                       height: 100,
                       width: 100,
                     }}
-                    alt="Helm"
+                    alt="Armor"
                     src="https://st3.depositphotos.com/8517310/12519/i/450/depositphotos_125193114-stock-photo-armor-3d-illustration-isolated.jpg"
                   />
                 </Grid>
@@ -88,7 +88,7 @@ export default function CharacterPage() {
                       height: 100,
                       width: 100,
                     }}
-                    alt="Helm"
+                    alt="ArmL"
                     src="https://media.istockphoto.com/id/1180956293/photo/steel-medieval-shield-metallic-shield-isolated-on-white-background-3d-rendering.jpg?s=612x612&w=0&k=20&c=yx5RS8je_6A559wE8bK0VPiylyo41AeG7Bzli0i44RM="
                   />
                 </Grid>
@@ -105,7 +105,7 @@ export default function CharacterPage() {
                         height: 100,
                         width: 100,
                       }}
-                      alt="Helm"
+                      alt="Leggings"
                       src="https://www.medievalware.com/wp-content/uploads/2021/03/dragon-leg-guards-1-600x600.png"
                     />
                   </Grid>
@@ -117,7 +117,7 @@ export default function CharacterPage() {
                       height: 100,
                       width: 100,
                     }}
-                    alt="Helm"
+                    alt="Boots"
                     src="https://st3.depositphotos.com/8517310/14151/i/1600/depositphotos_141518896-stock-photo-iron-fantasy-high-boots-knight.jpg"
                   />
                 </Grid>

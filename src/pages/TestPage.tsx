@@ -1,91 +1,67 @@
-import * as React from "react";
-import { Theme, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Chip from "@mui/material/Chip";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+import "../assets/styles/book.scss";
 
 export default function TestPage() {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
-
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
-        <Select
-          labelId="demo-multiple-chip-label"
-          id="demo-multiple-chip"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-          renderValue={(selected) => (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+    <div className="bookCover">
+      <input type="checkbox" id="checkbox-cover"></input>
+      <input type="checkbox" id="checkbox-page1"></input>
+      <input type="checkbox" id="checkbox-page2"></input>
+      <div className="book">
+        <div className="cover">
+          <label htmlFor="checkbox-cover"></label>
+        </div>
+        <div className="page" id="page1">
+          <div className="front-page">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil
+              magni laudantium beatae quia. Recusandae, fuga quas consectetur
+              perferendis aperiam esse velit veniam ducimus? Quisquam
+              consequatur perferendis quidem quia, recusandae ab!
+            </p>
+            <label className="next" htmlFor="checkbox-page1">
+              <p className="fas fa-chevron-right">Next</p>
+            </label>
+          </div>
+          <div className="back-page">
+            <img src="https://img.freepik.com/free-photo/conference-room-with-desk-wall-windows-that-says-office_1340-37385.jpg"></img>
+            <label className="prev" htmlFor="checkbox-page1">
+              <p className="fas fa-chevron-right">Previous</p>
+            </label>
+          </div>
+        </div>
+        <div className="page" id="page2">
+          <div className="front-page">
+            <h2>Page 2</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil
+              magni laudantium beatae quia. Recusandae, fuga quas consectetur
+              perferendis aperiam esse velit veniam ducimus? Quisquam
+              consequatur perferendis quidem quia, recusandae ab!
+            </p>
+            <label className="next" htmlFor="checkbox-page2">
+              <p className="fas fa-chevron-right">Next</p>
+            </label>
+          </div>
+          <div className="back-page">
+            <img src="https://t4.ftcdn.net/jpg/03/84/55/29/360_F_384552930_zPoe9zgmCF7qgt8fqSedcyJ6C6Ye3dFs.jpg"></img>
+            <label className="prev" htmlFor="checkbox-page2">
+              <p className="fas fa-chevron-right">Previous</p>
+            </label>
+          </div>
+        </div>
+        <div className="page" id="page3">
+          <div className="front-page">
+            <h2>Page 3</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil
+              magni laudantium beatae quia. Recusandae, fuga quas consectetur
+              perferendis aperiam esse velit veniam ducimus? Quisquam
+              consequatur perferendis quidem quia, recusandae ab!
+            </p>
+          </div>
+        </div>
+        <div className="back-cover"></div>
+      </div>
     </div>
   );
 }
