@@ -1,8 +1,10 @@
-import { Box, Divider, Grid } from "@mui/material";
-import ModalInventory from "../components/ModalInventory";
-import TableOfItems from "../components/TableOfItems";
+"use client";
 
-export default function CharacterPage() {
+import { Box, Divider, Grid } from "@mui/material";
+import ModalInventory from "src/components/ModalInventory";
+import TableOfItems from "src/components/TableOfItems";
+
+export default function Character() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={8}>

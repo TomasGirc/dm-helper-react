@@ -1,6 +1,6 @@
-import "../assets/styles/book.scss";
+import "./book.scss";
 
-export default function TestPage() {
+export default function Test() {
   return (
     <div className="bookCover">
       <input type="checkbox" id="checkbox-cover"></input>

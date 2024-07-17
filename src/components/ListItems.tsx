@@ -8,50 +8,51 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
+import Link from "next/link";
 
 export const mainListItems = (
   <>
-    <NavLink to="/">
+    <Link href="/">
       <ListItemButton>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Home" />
       </ListItemButton>
-    </NavLink>
-    <NavLink to="/city">
+    </Link>
+    <Link href="/city">
       <ListItemButton>
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
         <ListItemText primary="Cities" />
       </ListItemButton>
-    </NavLink>
-    <NavLink to="/test">
-      <ListItemButton>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Testable components" />
-      </ListItemButton>
-    </NavLink>
-    <NavLink to="/character/1">
+    </Link>
+    <Link href="/character">
       <ListItemButton>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Character" />
       </ListItemButton>
-    </NavLink>
-    <NavLink to="/items">
+    </Link>
+    <Link href="/item">
       <ListItemButton>
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
         <ListItemText primary="Items" />
       </ListItemButton>
-    </NavLink>
+    </Link>
+    <Link href="/test">
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Testable components" />
+      </ListItemButton>
+    </Link>
   </>
 );
 

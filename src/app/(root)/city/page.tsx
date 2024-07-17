@@ -1,8 +1,10 @@
+"use client";
+
 import { SyntheticEvent, useEffect, useState } from "react";
-import CityCard from "../components/CityCard";
-import { cityType } from "../assets/types";
-import { requestCity } from "../assets/requestInfo";
-import CityModal from "../components/CityModal";
+import { requestCity } from "src/assets/requestInfo";
+import { cityType } from "src/assets/types";
+import CityCard from "src/components/CityCard";
+import CityModal from "src/components/CityModal";
 
 const proxyCity: cityType[] = [
   {
@@ -14,7 +16,7 @@ const proxyCity: cityType[] = [
   },
 ];
 
-const CitysPage = () => {
+const City = () => {
   const [loading, isLoading] = useState<boolean>(false);
   const [cityName, setCityName] = useState<string>("");
   const [cityList, setCityList] = useState<cityType[]>(proxyCity);
@@ -134,4 +136,4 @@ const CitysPage = () => {
     </>
   );
 };
-export default CitysPage;
+export default City;

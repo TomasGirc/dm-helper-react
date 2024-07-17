@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Button, Modal } from "@mui/material";
 import React, { ReactNode } from "react";
 

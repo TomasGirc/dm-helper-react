@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import {
   Box,
@@ -16,9 +17,9 @@ import {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useEffect, useState } from "react";
-import { requestItems } from "../assets/requestInfo";
-import ItemModal from "../components/ItemModal";
-import { itemType } from "../assets/types";
+import { itemType } from "src/assets/types";
+import { requestItems } from "src/assets/requestInfo";
+import ItemModal from "src/components/ItemModal";
 
 const proxyItem: itemType[] = [
   {
@@ -103,7 +104,7 @@ function Row(props: {
   );
 }
 
-export default function ItemPage() {
+export default function Item() {
   const [loading, setLoading] = useState<boolean>(false);
   const [itemData, setItemData] = useState<itemType[]>(proxyItem);
 

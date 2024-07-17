@@ -37,11 +37,13 @@ export default function CityModal(props: modalType) {
   const [size, setSize] = React.useState<citySize>("Village");
   const [population, setPopulation] = React.useState<number>(100);
   const [description, setDescription] = React.useState<string>("");
+  const [selectedImage, setSelectedImage] = React.useState(null);
 
   const addCityToTheList = (
     e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
     e.preventDefault();
+    console.log(selectedImage);
     fetch(requestCity, {
       method: "POST",
       headers: {
@@ -53,6 +55,7 @@ export default function CityModal(props: modalType) {
         size: size,
         population: population,
         description: description,
+        image: selectedImage,
       }),
     })
       .then((data) => data.json())
@@ -66,6 +69,13 @@ export default function CityModal(props: modalType) {
         setDescription("");
       })
       .catch((e) => console.warn(e));
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
   };
 
   const handleOpen = () => {
@@ -180,6 +190,13 @@ export default function CityModal(props: modalType) {
                   </Select>
                 </FormControl>
               </Box>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
             </Grid>
             <Grid item xs={12}>
               <label
