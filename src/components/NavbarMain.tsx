@@ -16,7 +16,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useState } from "react";
-
 import { mainListItems, secondaryListItems } from "./ListItems";
 import List from "@mui/material/List";
 

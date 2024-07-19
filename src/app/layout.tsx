@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "React App",
-  description: "Web site created with Next.js.",
+  title: "DM Helper",
+  description: "Helper for all storytellers.",
 };
 
 export default function RootLayout({
@@ -21,7 +22,6 @@ export default function RootLayout({
             <div id="root">{children}</div>
           </ThemeProvider>
         </AppRouterCacheProvider>
-        <script type="module" src="/src/main.tsx"></script>
       </body>
     </html>
   );

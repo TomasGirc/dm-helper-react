@@ -23,6 +23,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+coverage
 coverage/clover.xml
 coverage/coverage-final.json
 coverage/lcov-report/pages/index.html
