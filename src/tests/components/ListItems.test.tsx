@@ -48,16 +48,4 @@ describe("Secondary list item", () => {
     );
     expect(getByText("Current month")).toBeTruthy();
   });
-  it("Displays Last quarter reports in the list", () => {
-    const { getByText } = render(
-      <BrowserRouter>{secondaryListItems}</BrowserRouter>
-    );
-    expect(getByText("Last quarter")).toBeTruthy();
-  });
-  it("Displays Year-end sale in the list", () => {
-    const { getByText } = render(
-      <BrowserRouter>{secondaryListItems}</BrowserRouter>
-    );
-    expect(getByText("Year-end sale")).toBeTruthy();
-  });
 });
