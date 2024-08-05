@@ -14,7 +14,7 @@ type modalType = {
   modalData: (data: itemType) => void;
 };
 jest.mock("../../assets/requestInfo", () => ({
-  requestItems: "http://localhost:3000/items",
+  requestItems: "http://localhost:3000/item",
 }));
 
 jest.mock("../../components/ItemModal", () => (props: modalType) => (
@@ -52,11 +52,11 @@ const mockItems: itemType[] = [
 describe("ItemPage Component", () => {
   beforeEach(() => {
     global.fetch = jest.fn((url) => {
-      if (url === "http://localhost:3000/items") {
+      if (url === "http://localhost:3000/item") {
         return Promise.resolve({
           json: () => Promise.resolve(mockItems),
         });
-      } else if (url.startsWith("http://localhost:3000/items/")) {
+      } else if (url.startsWith("http://localhost:3000/item/")) {
         return Promise.resolve();
       }
       return Promise.reject("unknown url");
@@ -126,7 +126,7 @@ describe("ItemPage Component", () => {
     // Ensure fetch was called with the correct URL
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/items/1",
+        "http://localhost:3000/item/1",
         expect.objectContaining({
           method: "DELETE",
         })
@@ -136,7 +136,7 @@ describe("ItemPage Component", () => {
     // Ensure fetchItems was called to reload items
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/items",
+        "http://localhost:3000/item",
         expect.any(Object)
       );
     });
@@ -187,7 +187,7 @@ describe("ItemPage Component", () => {
 
     await waitFor(() =>
       expect(global.fetch).toHaveBeenCalledWith(
-        "http://localhost:3000/items/1",
+        "http://localhost:3000/item/1",
         expect.any(Object)
       )
     );

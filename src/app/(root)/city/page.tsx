@@ -5,6 +5,7 @@ import { requestCity } from "src/assets/requestInfo";
 import { cityType } from "src/assets/types";
 import CityCard from "src/components/CityCard";
 import CityModal from "src/components/CityModal";
+import { searchByName } from "src/helpers";
 
 const proxyCity: cityType[] = [
   {
@@ -24,12 +25,6 @@ const City = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCityName(event.target.value);
-  };
-
-  const searchByName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.target.value.length > 1
-      ? setCityFilter(event.target.value)
-      : setCityFilter("");
   };
 
   const fetchCityData = () => {
@@ -76,7 +71,7 @@ const City = () => {
     setCityList([...cityList, data]);
   };
 
-  const cityId = async (data: number) => {
+  const cityDelete = async (data: number) => {
     await fetch(`${requestCity + "/" + data}`, {
       method: "DELETE",
     }).then();
@@ -92,9 +87,7 @@ const City = () => {
       filter.name.toLocaleLowerCase().includes(cityFilter.toLocaleLowerCase())
     )
     .map((city, index) => (
-      // <Link to={`/city/${index}`} key={index + city.name}>
-      <CityCard city={city} key={index + city.name} deleteCity={cityId} />
-      // </Link>
+      <CityCard city={city} key={index + city.name} deleteCity={cityDelete} />
     ));
 
   return (
@@ -124,7 +117,7 @@ const City = () => {
             className="input input__lg"
             name="text"
             autoComplete="off"
-            onChange={searchByName}
+            onChange={(e) => setCityFilter(searchByName(e.target.value))}
           />
         </div>
         {loading ? (
