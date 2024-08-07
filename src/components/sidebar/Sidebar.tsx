@@ -2,14 +2,18 @@ import { ReactNode, useState } from "react";
 import SidebarItem from "./SidebarItem";
 
 // This sidebar component is for both mobile and desktop
-function Sidebar({ children, expanded, setExpanded }: any) {
+function Sidebar({
+  children,
+  expanded,
+  setExpanded,
+}: {
+  children: ReactNode;
+  expanded: boolean;
+  setExpanded: any;
+}) {
   return (
     <>
       <div className="relative">
-        {/* 
-          This div is used to create the background overlay when the sidebar is expanded
-          It is only visible on mobile screens
-        */}
         <div
           className={`fixed inset-0 -z-10 block bg-gray-400  ${
             expanded ? "block sm:hidden" : "hidden"
