@@ -22,8 +22,10 @@ export default function SidebarItem({
 
   // Calculate the height of the sub-menu assuming each item is 40px tall
   const subMenuHeight = expandSubMenu
-    ? `${((subMenu?.length || 0) * 40 + (subMenu! && 15)).toString()}px`
+    ? `${((subMenu?.length || 0) * 47.5 + (subMenu! && 15)).toString()}px`
     : 0;
+
+  const linkParent = subMenu ? subMenu.find((v) => v.href === pathname) : false;
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function SidebarItem({
          items-center rounded-md px-3
          py-2 font-medium transition-colors
          ${
-           pathname === href
+           pathname === href || linkParent
              ? "text-primary-500 bg-gradient-to-tr from-indigo-200 to-indigo-100"
              : "text-gray-600 hover:bg-indigo-50"
          }
@@ -46,7 +48,7 @@ export default function SidebarItem({
             <span className="h-6 w-6">{icon}</span>
 
             <span
-              className={`overflow-hidden text-start transition-all ${
+              className={`overflow-hidden text-start transition-all text-main-black font-semibold ${
                 expanded ? "ml-3 w-44" : "w-0"
               }`}
             >
@@ -67,10 +69,6 @@ export default function SidebarItem({
         </ConditionalLink>
       </li>
       <ul className="sub-menu pl-6" style={{ height: subMenuHeight }}>
-        {/* 
-          Render the sub-menu items if the item has a sub-menu
-          The sub-menu items are rendered as SidebarItem components
-        */}
         {expanded &&
           subMenu?.map((item, index) => (
             <SidebarItem key={index} {...item} expanded={expanded} />

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { citySize, cityType } from "../assets/types";
-import { requestCity } from "../assets/requestInfo";
+import { requestCity } from "../assets/constants/requestInfo";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";

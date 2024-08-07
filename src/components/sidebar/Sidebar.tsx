@@ -1,5 +1,6 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, Dispatch, SetStateAction } from "react";
 import SidebarItem from "./SidebarItem";
+import { navBarItems } from "src/assets/constants/navbar";
 
 // This sidebar component is for both mobile and desktop
 function Sidebar({
@@ -9,7 +10,7 @@ function Sidebar({
 }: {
   children: ReactNode;
   expanded: boolean;
-  setExpanded: any;
+  setExpanded: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <>
@@ -48,7 +49,7 @@ function Sidebar({
                 </button>
               </div>
             </div>
-            <ul className="flex-1 px-3">{children}</ul>
+            <ul className="flex-1 px-3 overflow-auto">{children}</ul>
             <div className="flex border-t p-3">
               <img
                 src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true&name=T+G"
@@ -78,39 +79,6 @@ function Sidebar({
 
 export default function MakeSidebar({ content }: { content: ReactNode }) {
   const [expanded, setExpanded] = useState(true);
-  const navBarItems = [
-    {
-      icon: "",
-      text: "Home",
-      href: "/",
-    },
-    {
-      icon: "",
-      subMenu: [
-        {
-          icon: "",
-          text: "Citys",
-          href: "/city",
-        },
-        {
-          icon: "",
-          text: "Items",
-          href: "/item",
-        },
-        {
-          icon: "",
-          text: "Character",
-          href: "/character",
-        },
-      ],
-      text: "Wiki",
-    },
-    {
-      icon: "",
-      text: "Test",
-      href: "/test",
-    },
-  ];
 
   // Desktop Sidebar
   return (
