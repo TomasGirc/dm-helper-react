@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Navbar from "src/components/NavbarMain";
+import MakeSidebar from "src/components/sidebar/Sidebar";
 
 function layout({
   children,
@@ -10,7 +10,8 @@ function layout({
 }>) {
   return (
     <>
-      <Navbar content={children} />
+      {/* <Navbar content={children} /> */}
+      <MakeSidebar content={children} />
     </>
   );
 }

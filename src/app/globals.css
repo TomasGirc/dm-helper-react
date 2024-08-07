@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
-a.active {
-    color: red
-}
+.sub-menu {
+    overflow: hidden;
+    transition: height 300ms;
+  }
