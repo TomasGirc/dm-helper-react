@@ -10,15 +10,24 @@ export type cityType = {
 export type citySize = "Village" | "City" | "Capital";
 
 export type itemType = {
-  id?: number;
+  _id?: string;
   name: string;
   rarity: string;
   type: string;
-  keywords: string[];
-  requirements: string[];
+  keywords: keywordsType;
+  requirements?: requirementsType;
   price: number;
   description: string;
 };
+
+export type keywordsType = {
+  name: string;
+}[];
+
+export type requirementsType = {
+  name: string;
+  value: number;
+}[];
 
 export interface SidebarItemProps {
   active?: boolean;

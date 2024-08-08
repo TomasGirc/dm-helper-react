@@ -1,9 +1,8 @@
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-
-import { requestItems } from "../constants/requestInfo";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
@@ -11,11 +10,12 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import ChipInput from "./ChipInput";
-import { itemType } from "../entities/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addItem } from "src/api/items";
+import { keywordsType, requirementsType } from "src/entities/types";
 
 type modalType = {
   title: string;
-  modalData: (data: itemType) => void;
 };
 
 const style = {
@@ -33,69 +33,60 @@ const style = {
 };
 
 export default function ItemModal(props: modalType) {
+  const queryClient = useQueryClient();
+
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState<string>("");
   const [rarity, setRarity] = React.useState<string>("");
   const [type, setType] = React.useState<string>("");
-  const [keywords, setKeywords] = React.useState<string>("");
-  const [requirements, setRequirements] = React.useState<string>("");
+  const [keywords, setKeywords] = React.useState<keywordsType>([]);
+  const [requirements, setRequirements] = React.useState<requirementsType>([]);
   const [price, setPrice] = React.useState<number>(0);
   const [description, setDescription] = React.useState<string>("");
+
+  const { mutateAsync: addItemMutation } = useMutation({
+    mutationFn: addItem,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["items"]);
+      setOpen(false);
+      setName("");
+      setRarity("");
+      setType("");
+      setKeywords([]);
+      setRequirements([]);
+      setPrice(0);
+      setDescription("");
+    },
+  });
 
   const addItemToTheList = (
     e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
     e.preventDefault();
-    fetch(requestItems, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        rarity: rarity,
-        type: type,
-        keywords: keywords,
-        requirements: requirements,
-        price: price,
-        description: description,
-      }),
-    })
-      .then((data) => data.json())
-      .then((results) => {
-        props.modalData(results);
-        setOpen(false);
-        setName("");
-        setRarity("");
-        setType("");
-        setKeywords("");
-        setRequirements("");
-        setPrice(0);
-        setDescription("");
-      })
-      .catch((e) => console.warn(e));
+    addItemMutation({
+      name: name,
+      rarity: rarity,
+      type: type,
+      keywords: keywords,
+      requirements: requirements,
+      price: price,
+      description: description,
+    });
   };
 
-  const requirementsData = (data: string) => {
-    setRequirements(data);
+  const requirementsData = (data: string[]) => {
+    // setRequirements(data);
   };
   const keywordsData = (data: string) => {
-    setKeywords(data);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
+    setKeywords(data.split(",").map((name) => ({ name })));
   };
 
   return (
     <div>
-      <Button onClick={handleOpen}>{props.title}</Button>
+      <Button onClick={() => setOpen(true)}>{props.title}</Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
