@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Divider, Grid } from "@mui/material";
-import ModalInventory from "src/components/ModalInventory";
+import ModalInventory from "src/components/modal/ModalInventory";
 import TableOfItems from "src/components/TableOfItems";
 
 export default function Character() {

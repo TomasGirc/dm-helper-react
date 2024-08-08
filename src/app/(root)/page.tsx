@@ -3,6 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { addTodo, fetchTodos } from "src/api/todo";
+import ModalComponent from "src/components/modal/ModalComponent";
 import TodoCard from "src/components/todo/TodoCard";
 
 export default function Page() {
@@ -29,6 +30,7 @@ export default function Page() {
   }
   return (
     <>
+      <ModalComponent title="Modal" />
       <div>
         <input
           type="text"

@@ -2,10 +2,10 @@
 
 import { SyntheticEvent, useState } from "react";
 import CityCard from "src/components/CityCard";
-import CityModal from "src/components/CityModal";
 import { searchByName } from "src/helpers";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addCitys, fetchCitys } from "src/api/citys";
+import CityModal from "src/components/modal/CityModal";
 
 const City = () => {
   const queryClient = useQueryClient();
