@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { ConditionalLink } from "../helpers/ConditionalLink";
 import { usePathname } from "next/navigation";
-import { SidebarItemProps } from "src/assets/types";
 import { RetractedSidebar } from "./SidebarRetracted";
+import { SidebarItemProps } from "src/entities/types";
+import { ConditionalLink } from "../helpers/ConditionalLink";
 
 export default function SidebarItem({
   icon,

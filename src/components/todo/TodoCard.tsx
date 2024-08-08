@@ -1,11 +1,6 @@
 import { useState } from "react";
-import { Todo } from "../entities/Todo";
 
-interface TodoProps {
-  todo: Todo;
-}
-
-export default function TodoCard({ todo }: TodoProps) {
+export default function TodoCard({ todo }) {
   const [checked, setChecked] = useState(todo.completed);
 
   return (

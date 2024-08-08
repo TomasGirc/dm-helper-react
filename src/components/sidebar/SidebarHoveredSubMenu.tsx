@@ -1,5 +1,5 @@
 import { usePathname } from "next/navigation";
-import { SubMenuItemProps } from "src/assets/types";
+import { SubMenuItemProps } from "src/entities/types";
 import { ConditionalLink } from "../helpers/ConditionalLink";
 
 export function HoveredSubMenuItem({ icon, text, href }: SubMenuItemProps) {

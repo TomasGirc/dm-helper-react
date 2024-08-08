@@ -1,4 +1,4 @@
-import { SubMenuItemProps } from "src/assets/types";
+import { SubMenuItemProps } from "src/entities/types";
 import { HoveredSubMenuItem } from "./SidebarHoveredSubMenu";
 
 export function RetractedSidebar({
