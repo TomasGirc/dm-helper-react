@@ -29,7 +29,7 @@ import { deleteItem, fetchItems } from "src/api/items";
 function Row(props: {
   row: itemType;
   index: number;
-  deleteCallback: UseMutateAsyncFunction<void, Error, number, unknown>;
+  deleteCallback: UseMutateAsyncFunction<void, Error, string, unknown>;
 }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -66,7 +66,10 @@ function Row(props: {
             })}
         </TableCell>
         <TableCell key={props.index + "deletes"} align="right">
-          <Button size="small" onClick={() => props.deleteCallback(row._id)}>
+          <Button
+            size="small"
+            onClick={() => props.deleteCallback(row._id || "")}
+          >
             Delete
           </Button>
         </TableCell>

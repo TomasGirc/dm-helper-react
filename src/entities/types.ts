@@ -1,5 +1,5 @@
 export type cityType = {
-  id?: number;
+  _id?: string;
   name: string;
   region: string;
   size: citySize;

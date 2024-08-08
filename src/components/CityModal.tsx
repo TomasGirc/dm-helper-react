@@ -2,18 +2,18 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import { citySize, cityType } from "../entities/types";
-import { requestCity } from "../constants/requestInfo";
+import { citySize } from "../entities/types";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addCitys } from "src/api/citys";
 
 type modalType = {
   title: string;
-  citydata: (data: cityType) => void;
 };
 
 const style = {
@@ -31,51 +31,43 @@ const style = {
 };
 
 export default function CityModal(props: modalType) {
+  const queryClient = useQueryClient();
+
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState<string>("");
   const [region, setRegion] = React.useState<string>("");
   const [size, setSize] = React.useState<citySize>("Village");
   const [population, setPopulation] = React.useState<number>(100);
   const [description, setDescription] = React.useState<string>("");
-  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  const { mutateAsync: addCityMutation } = useMutation({
+    mutationFn: addCitys,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["citys"]);
+      setOpen(false);
+      setName("");
+      setRegion("");
+      setSize("Village");
+      setPopulation(10);
+      setDescription("");
+    },
+  });
 
   const addCityToTheList = (
     e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
     e.preventDefault();
-    console.log(selectedImage);
-    fetch(requestCity, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        region: region,
-        size: size,
-        population: population,
-        description: description,
-        image: selectedImage,
-      }),
-    })
-      .then((data) => data.json())
-      .then((results) => {
-        props.citydata(results);
-        setOpen(false);
-        setName("");
-        setRegion("");
-        setSize("Village");
-        setPopulation(10);
-        setDescription("");
-      })
-      .catch((e) => console.warn(e));
+    addCityMutation({
+      name: name,
+      region: region,
+      size: size,
+      population: population,
+      description: description,
+    });
   };
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(file);
-    }
+    event.prevent.deafault;
   };
 
   const handleOpen = () => {

@@ -8,7 +8,7 @@ export const fetchItems = async (): Promise<itemType[]> => {
   return await response.json();
 };
 
-export const deleteItem = async (data: number) => {
+export const deleteItem = async (data: string) => {
   await fetch(`${requestItems + "/" + data}`, {
     method: "DELETE",
   }).finally(() => fetchItems());
