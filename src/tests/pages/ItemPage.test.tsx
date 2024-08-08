@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ItemPage from "../../app/(root)/item/page";
-import { itemType } from "../../assets/types";
+import { itemType } from "../../entities/types";
 
 type modalType = {
   title: string;

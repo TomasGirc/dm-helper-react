@@ -1,6 +1,6 @@
 import { ReactNode, useState, Dispatch, SetStateAction } from "react";
 import SidebarItem from "./SidebarItem";
-import { navBarItems } from "src/assets/constants/navbar";
+import { navBarItems } from "src/constants/navbar";
 
 // This sidebar component is for both mobile and desktop
 function Sidebar({

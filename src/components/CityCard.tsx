@@ -1,5 +1,5 @@
 import CardContent from "@mui/material/CardContent";
-import { cityType } from "../assets/types";
+import { cityType } from "../entities/types";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";

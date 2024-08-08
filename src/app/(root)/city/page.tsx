@@ -1,7 +1,7 @@
 "use client";
 
 import { SyntheticEvent, useEffect, useState } from "react";
-import { requestCity } from "src/assets/constants/requestInfo";
+import { requestCity } from "src/constants/requestInfo";
 import { cityType } from "src/assets/types";
 import CityCard from "src/components/CityCard";
 import CityModal from "src/components/CityModal";

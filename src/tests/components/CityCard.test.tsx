@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import CityCard from "../../components/CityCard";
-import { cityType } from "../../assets/types";
+import { cityType } from "../../entities/types";
 
 const proxyCity: cityType = {
   id: 1,

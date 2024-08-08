@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MakeSidebar from "src/components/sidebar/Sidebar";
+
+const queryClient = new QueryClient();
 
 function layout({
   children,
@@ -10,8 +13,10 @@ function layout({
 }>) {
   return (
     <>
-      {/* <Navbar content={children} /> */}
-      <MakeSidebar content={children} />
+      <QueryClientProvider client={queryClient}>
+        {/* <Navbar content={children} /> */}
+        <MakeSidebar content={children} />
+      </QueryClientProvider>
     </>
   );
 }

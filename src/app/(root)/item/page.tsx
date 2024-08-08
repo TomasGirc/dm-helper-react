@@ -18,7 +18,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useEffect, useState } from "react";
 import { itemType } from "src/assets/types";
-import { requestItems } from "src/assets/constants/requestInfo";
+import { requestItems } from "src/constants/requestInfo";
 import ItemModal from "src/components/ItemModal";
 
 const proxyItem: itemType[] = [

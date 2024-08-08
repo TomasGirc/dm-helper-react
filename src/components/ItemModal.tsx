@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 
-import { requestItems } from "../assets/constants/requestInfo";
+import { requestItems } from "../constants/requestInfo";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import ChipInput from "./ChipInput";
-import { itemType } from "../assets/types";
+import { itemType } from "../entities/types";
 
 type modalType = {
   title: string;
