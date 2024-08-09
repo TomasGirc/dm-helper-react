@@ -9,10 +9,11 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import ChipInput from "./ChipInput";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addItem } from "src/api/items";
 import { keywordsType, requirementsType } from "src/entities/types";
+import ChipInput from "../ChipInput";
 
 type modalType = {
   title: string;

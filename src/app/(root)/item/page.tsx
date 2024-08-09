@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import ItemModal from "src/components/ItemModal";
+
 import { itemType } from "src/entities/types";
 import {
   UseMutateAsyncFunction,
@@ -25,6 +25,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { deleteItem, fetchItems } from "src/api/items";
+import ItemModal from "src/components/modal/ItemModal";
 
 function Row(props: {
   row: itemType;
