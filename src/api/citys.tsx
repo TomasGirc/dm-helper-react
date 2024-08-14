@@ -24,7 +24,7 @@ export const addCitys = async (data: cityType) => {
     body: JSON.stringify(data),
   })
     .catch((e) => {
-      console.error("Add item throw", e);
+      console.error("Add city throw", e);
     })
     .finally(() => fetchCitys());
 };

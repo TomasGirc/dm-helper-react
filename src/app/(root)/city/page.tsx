@@ -6,11 +6,13 @@ import { searchByName } from "src/helpers";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addCitys, fetchCitys } from "src/api/citys";
 import CityModal from "src/components/modal/CityModal";
+import ModalComponent from "src/components/modal/ModalComponent";
 
 const City = () => {
   const queryClient = useQueryClient();
 
   const [cityName, setCityName] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
   const [cityFilter, setCityFilter] = useState("");
 
   const { data: city, isLoading } = useQuery({
@@ -53,7 +55,14 @@ const City = () => {
   return (
     <>
       <div className="m-2">
-        <CityModal title={"Add new city"}></CityModal>
+        <ModalComponent
+          title="Add"
+          colorBg="bg-blue-500"
+          colorTxt="text-white"
+          modalState={showModal}
+          setShowModal={setShowModal}
+          content={<CityModal setShowModal={setShowModal}></CityModal>}
+        />
         <div className="flex mb-1">
           <form onSubmit={addCityToTheList} className="mr-1 ">
             <input

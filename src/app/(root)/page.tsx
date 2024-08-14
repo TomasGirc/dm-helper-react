@@ -3,18 +3,19 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { addTodo, fetchTodos } from "src/api/todo";
+import { ButtonComponent } from "src/components/button/ButtonComponent";
 import ModalComponent from "src/components/modal/ModalComponent";
 import TodoCard from "src/components/todo/TodoCard";
 
 export default function Page() {
   const queryClient = useQueryClient();
 
-  const [search, setSearch] = useState("");
   const [title, setTitle] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const { data: todos, isLoading } = useQuery({
-    queryFn: () => fetchTodos(search),
-    queryKey: ["todos", { search }],
+    queryFn: () => fetchTodos(),
+    queryKey: ["todos"],
     staleTime: Infinity, //do not refresh data
   });
 
@@ -30,7 +31,24 @@ export default function Page() {
   }
   return (
     <>
-      <ModalComponent title="Modal" />
+      <ModalComponent
+        title="Modal"
+        colorBg="bg-blue-500"
+        colorTxt="text-white"
+        modalState={showModal}
+        setShowModal={setShowModal}
+        content={
+          <>
+            <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+              <ButtonComponent onClick={() => setShowModal(false)}>
+                Close
+              </ButtonComponent>
+            </div>
+          </>
+        }
+      />
+      <br />
+      <br />
       <div>
         <input
           type="text"

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type cityType = {
   _id?: string;
   name: string;
@@ -41,4 +43,13 @@ export interface SidebarItemProps {
 export interface SubMenuItemProps extends Omit<SidebarItemProps, "expanded"> {
   expanded?: never;
   subMenu?: never;
+}
+
+export interface ModalComponentProps {
+  title: string;
+  colorBg?: string;
+  colorTxt?: string;
+  modalState?: boolean;
+  setShowModal?: React.Dispatch<React.SetStateAction<boolean>>; // Optional now
+  content: ReactNode;
 }
