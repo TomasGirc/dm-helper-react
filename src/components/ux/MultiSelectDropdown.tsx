@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import ClickOutside from "../ClickOutside";
+import { useState } from "react";
+import ClickOutside from "../helpers/ClickOutside";
 
 export default function MultiSelectDropdown({
   formFieldName,
@@ -11,7 +11,6 @@ export default function MultiSelectDropdown({
 }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
-  const optionsListRef = useRef(null);
 
   const handleChange = (e) => {
     const isChecked = e.target.checked;
@@ -29,34 +28,6 @@ export default function MultiSelectDropdown({
 
     setSelectedOptions(newSelectedOptions);
     onChange(newSelectedOptions);
-  };
-
-  const isSelectAllEnabled = selectedOptions.length < options.length;
-
-  const handleSelectAllClick = (e) => {
-    e.preventDefault();
-
-    const optionsInputs = optionsListRef.current.querySelectorAll("input");
-    optionsInputs.forEach((input) => {
-      input.checked = true;
-    });
-
-    setSelectedOptions([...options]);
-    onChange([...options]);
-  };
-
-  const isClearSelectionEnabled = selectedOptions.length > 0;
-
-  const handleClearSelectionClick = (e) => {
-    e.preventDefault();
-
-    const optionsInputs = optionsListRef.current.querySelectorAll("input");
-    optionsInputs.forEach((input) => {
-      input.checked = false;
-    });
-
-    setSelectedOptions([]);
-    onChange([]);
   };
 
   const checkHandler = () => {
@@ -81,6 +52,7 @@ export default function MultiSelectDropdown({
 
         <div className="cursor-pointer after:content-['▼'] after:text-xs after:ml-1 after:inline-flex after:items-center peer-checked:after:-rotate-180 after:transition-transform inline-flex border rounded px-5 py-2">
           {prompt}
+          {selectedOptions}
           {selectedOptions.length > 0 && (
             <span className="ml-1 text-blue-500">{`(${selectedOptions.length} selected)`}</span>
           )}
@@ -88,7 +60,7 @@ export default function MultiSelectDropdown({
 
         <div className="absolute bg-white border transition-opacity opacity-0 pointer-events-none peer-checked:opacity-100 peer-checked:pointer-events-auto w-full max-h-60 overflow-y-scroll">
           <ul>
-            {options.map((option, i) => {
+            {options.map((option) => {
               return (
                 <li key={option}>
                   <label

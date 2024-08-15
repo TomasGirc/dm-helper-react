@@ -12,7 +12,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addCitys } from "src/api/citys";
-import { ButtonComponent } from "../button/ButtonComponent";
+import { ButtonComponent } from "../ux/ButtonComponent";
 
 type modalType = {
   title: string;

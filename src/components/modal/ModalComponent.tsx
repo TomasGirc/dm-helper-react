@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ClickOutside from "../ClickOutside";
-import { ButtonComponent } from "../button/ButtonComponent";
+import ClickOutside from "../helpers/ClickOutside";
+import { ButtonComponent } from "../ux/ButtonComponent";
 import { ModalComponentProps } from "src/entities/types";
 
 export default function ModalComponent({

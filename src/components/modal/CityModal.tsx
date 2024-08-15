@@ -1,6 +1,6 @@
 import React from "react";
-import { ButtonComponent } from "../button/ButtonComponent";
-import MultiSelectDropdown from "../uxComponents/MultiSelectDropdown";
+import { ButtonComponent } from "../ux/ButtonComponent";
+import MultiSelectDropdown from "../ux/MultiSelectDropdown";
 
 const COUNTRIES = [
   "Austria",
@@ -62,6 +62,12 @@ const CityModal = ({
             />
           </div>
           <div>
+            <label
+              htmlFor="city_name"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              City name
+            </label>
             <MultiSelectDropdown
               formFieldName={"countries"}
               options={COUNTRIES}
