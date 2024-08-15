@@ -3,9 +3,10 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { addTodo, fetchTodos } from "src/api/todo";
-import { ButtonComponent } from "src/components/button/ButtonComponent";
+
 import ModalComponent from "src/components/modal/ModalComponent";
 import TodoCard from "src/components/todo/TodoCard";
+import { ButtonComponent } from "src/components/ux/ButtonComponent";
 
 export default function Page() {
   const queryClient = useQueryClient();
