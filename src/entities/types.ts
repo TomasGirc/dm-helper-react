@@ -9,6 +9,26 @@ export type cityType = {
   description: string;
 };
 
+export type regionType = {
+  _id?: string;
+  name: string;
+  locations: locationType[];
+  description: string;
+};
+
+export type locationType = {
+  _id?: string;
+  name: string;
+  description: string;
+  npc?: npcType[];
+}
+
+export type npcType = {
+  _id?: string;
+  name: string;
+  description: string;
+}
+
 export type citySize = "Village" | "City" | "Capital";
 
 export type itemType = {
