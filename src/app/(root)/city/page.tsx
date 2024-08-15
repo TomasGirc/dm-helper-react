@@ -1,17 +1,14 @@
 "use client";
 
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import CityCard from "src/components/CityCard";
 import { searchByName } from "src/helpers";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addCitys, fetchCitys } from "src/api/citys";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCitys } from "src/api/citys";
 import CityModal from "src/components/modal/CityModal";
 import ModalComponent from "src/components/modal/ModalComponent";
 
 const City = () => {
-  const queryClient = useQueryClient();
-
-  const [cityName, setCityName] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
   const [cityFilter, setCityFilter] = useState("");
 
@@ -20,31 +17,6 @@ const City = () => {
     queryKey: ["citys"],
     staleTime: Infinity,
   });
-
-  const { mutateAsync: addCityMutation } = useMutation({
-    mutationFn: addCitys,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["citys"]);
-      setCityName("");
-    },
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCityName(event.target.value);
-  };
-
-  const addCityToTheList = (
-    event: SyntheticEvent<HTMLFormElement, SubmitEvent>
-  ) => {
-    event.preventDefault();
-    addCityMutation({
-      name: cityName,
-      region: "Volda",
-      size: "Village",
-      population: 1000,
-      description: "Description text",
-    });
-  };
 
   const listOfCitys = city
     ?.filter((filter) =>
@@ -55,39 +27,33 @@ const City = () => {
   return (
     <>
       <div className="m-2">
-        <ModalComponent
-          title="Add"
-          colorBg="bg-blue-500"
-          colorTxt="text-white"
-          modalState={showModal}
-          setShowModal={setShowModal}
-          content={<CityModal setShowModal={setShowModal}></CityModal>}
-        />
-        <div className="flex mb-1">
-          <form onSubmit={addCityToTheList} className="mr-1 ">
+        <div className="flex mb-[12px] w-full justify-between">
+          <div>
             <input
-              placeholder="Add city"
+              placeholder="Search for city"
               type="text"
               id="new-todo-input"
-              className="input input__lg"
+              className="input-style"
               name="text"
               autoComplete="off"
-              value={cityName}
-              onChange={handleChange}
+              onChange={(e) => setCityFilter(searchByName(e.target.value))}
             />
-          </form>
-          <input
-            placeholder="Search for city"
-            type="text"
-            id="new-todo-input"
-            className="input input__lg"
-            name="text"
-            autoComplete="off"
-            onChange={(e) => setCityFilter(searchByName(e.target.value))}
-          />
+          </div>
+          <div>
+            <ModalComponent
+              title="+"
+              colorBg="bg-blue-500"
+              colorTxt="text-white"
+              modalState={showModal}
+              setShowModal={setShowModal}
+              content={<CityModal setShowModal={setShowModal}></CityModal>}
+            />
+          </div>
         </div>
         {!isLoading ? (
-          <div className="grid grid-cols-4 gap-4">{listOfCitys}</div>
+          <div className="grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-4">
+            {listOfCitys}
+          </div>
         ) : (
           <div className="m-2">Loading</div>
         )}
