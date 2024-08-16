@@ -31,25 +31,27 @@ export type npcType = {
 
 export type citySize = "Village" | "City" | "Capital";
 
+export type rarityType = "Miscalenious" | "Common" | "Rare" | "Legendary";
+
 export type itemType = {
   _id?: string;
   name: string;
   rarity: string;
   type: string;
-  keywords: keywordsType;
-  requirements?: requirementsType;
+  keywords: keywordsType[];
+  requirements?: requirementsType[];
   price: number;
   description: string;
 };
 
 export type keywordsType = {
   name: string;
-}[];
+};
 
 export type requirementsType = {
   name: string;
   value: number;
-}[];
+};
 
 export interface SidebarItemProps {
   active?: boolean;

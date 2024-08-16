@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addCitys } from "src/api/citys";
 import { citySize } from "src/entities/types";
 import { regionProxy, sizeProxy } from "src/constants/proxyData";
-import LabelComponent from "../ux/labelComponent";
+import LabelComponent from "../ux/LabelComponent";
 
 const CityModal = ({
   setShowModal,

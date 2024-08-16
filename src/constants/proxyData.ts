@@ -31,3 +31,11 @@ export const regionProxy: regionType[] = [{
 }]
 
 export const sizeProxy: citySize[] = ["Village", "City" , "Capital"]
+
+export const rarityProxy = ["Miscalenious", "Common", "Rare", "Legendary"]
+
+export const requirementProxy = ["Strength", "Dexterity", "Knowladge", "Influence"]
+
+export const keywordProxy = ["Magic", "Wood", "Strength"]
+
+export const itemTypeProxy = ["Sword", "Spear", "Gem", "Ring"]

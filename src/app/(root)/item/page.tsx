@@ -26,6 +26,8 @@ import {
 } from "@tanstack/react-query";
 import { deleteItem, fetchItems } from "src/api/items";
 import ItemModal from "src/components/modal/ItemModal";
+import ModalComponent from "src/components/modal/ModalComponent";
+import { useState } from "react";
 
 function Row(props: {
   row: itemType;
@@ -33,7 +35,8 @@ function Row(props: {
   deleteCallback: UseMutateAsyncFunction<void, Error, string, unknown>;
 }) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
   return (
     <React.Fragment>
       <TableRow key={row.name} sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -106,6 +109,7 @@ function Row(props: {
 
 export default function Item() {
   const queryClient = useQueryClient();
+  const [showModal, setShowModal] = useState(false);
 
   const { data: items, isLoading } = useQuery({
     queryFn: () => fetchItems(),
@@ -136,8 +140,15 @@ export default function Item() {
               <TableCell align="right">type</TableCell>
               <TableCell align="right">keywords</TableCell>
               <TableCell align="right">requirements</TableCell>
-              <TableCell align="right">
-                <ItemModal title={"+"} />
+              <TableCell>
+                <ModalComponent
+                  title="+"
+                  colorBg="bg-blue-500"
+                  colorTxt="text-white"
+                  modalState={showModal}
+                  setShowModal={setShowModal}
+                  content={<ItemModal setShowModal={setShowModal}></ItemModal>}
+                />
               </TableCell>
             </TableRow>
           </TableHead>

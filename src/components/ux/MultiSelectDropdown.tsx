@@ -62,7 +62,7 @@ export default function MultiSelectDropdown({
           {selectedOptions.length > 0 ? (
             <span className="ml-1 text-blue-500">{`${selectedOptions}`}</span>
           ) : (
-            prompt
+            <p className="w-full">{prompt}</p>
           )}
         </div>
 
