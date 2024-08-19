@@ -37,7 +37,7 @@ export default function SidebarItem({
          items-center rounded-md px-3
          py-2 font-medium transition-colors
          ${
-           pathname === href || linkParent
+           pathname === href || linkParent || pathname.includes(href + "/")
              ? "text-primary-500 bg-gradient-to-tr from-indigo-200 to-indigo-100"
              : "text-gray-600 hover:bg-indigo-50"
          }

@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCitys } from "src/api/citys";
 import CityModal from "src/components/modal/CityModal";
 import ModalComponent from "src/components/modal/ModalComponent";
+import Link from "next/link";
 
 const City = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,11 @@ const City = () => {
     ?.filter((filter) =>
       filter.name.toLocaleLowerCase().includes(cityFilter.toLocaleLowerCase())
     )
-    .map((city, index) => <CityCard city={city} key={index + city.name} />);
+    .map((city, index) => (
+      <Link href={`/city/${city._id}`}>
+        <CityCard city={city} key={index + city.name} />
+      </Link>
+    ));
 
   return (
     <>

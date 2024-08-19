@@ -8,6 +8,13 @@ export const fetchCitys = async (): Promise<cityType[]> => {
   return await response.json();
 };
 
+export const fetchSingleCity = async (id: string): Promise<cityType> => {
+  const response = await fetch(`${requestCity}/${id}`, {
+    method: "GET",
+  });
+  return await response.json();
+};
+
 export const deleteCitys = async (data: string) => {
   await fetch(`${requestCity + "/" + data}`, {
     method: "DELETE",
