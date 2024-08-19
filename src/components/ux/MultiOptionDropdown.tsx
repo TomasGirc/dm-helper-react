@@ -44,7 +44,7 @@ const MultiOptionDropdown = ({
         <div className="col-span-2">
           <select id="requirements" className="input-style">
             {requirementProxy.map((v) => (
-              <option value={v} onClick={() => setRequirement(v)}>
+              <option value={v} key={v} onClick={() => setRequirement(v)}>
                 {v}
               </option>
             ))}

@@ -82,7 +82,7 @@ export default function ItemModal({
             <LabelComponent text="Rarity" />
             <select id="regions" className="input-style">
               {rarityProxy.map((v) => (
-                <option value={v} onClick={() => setRarity(v)}>
+                <option value={v} key={v} onClick={() => setRarity(v)}>
                   {v}
                 </option>
               ))}
@@ -118,7 +118,7 @@ export default function ItemModal({
             <LabelComponent text="Type" />
             <select id="itemType" className="input-style">
               {itemTypeProxy.map((v) => (
-                <option value={v} onClick={() => setType(v)}>
+                <option value={v} key={v} onClick={() => setType(v)}>
                   {v}
                 </option>
               ))}
