@@ -79,7 +79,7 @@ const CityModal = ({
             <LabelComponent text="Select type" />
             <select id="regions" className="input-style">
               {sizeProxy.map((v) => (
-                <option value={v} key={v} onChange={() => setSize(v)}>
+                <option value={v} key={v} onClick={() => setSize(v)}>
                   {v}
                 </option>
               ))}
