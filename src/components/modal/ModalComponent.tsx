@@ -10,6 +10,7 @@ export default function ModalComponent({
   modalState = false,
   setShowModal,
   content,
+  showButton = true,
 }: ModalComponentProps) {
   const [internalShowModal, setInternalShowModal] = useState(modalState);
 
@@ -43,13 +44,15 @@ export default function ModalComponent({
 
   return (
     <>
-      <ButtonComponent
-        onClick={handleOpenModal}
-        colorBg={colorBg}
-        colorTxt={colorTxt}
-      >
-        {title}
-      </ButtonComponent>
+      {showButton && title && (
+        <ButtonComponent
+          onClick={handleOpenModal}
+          colorBg={colorBg}
+          colorTxt={colorTxt}
+        >
+          {title}
+        </ButtonComponent>
+      )}
 
       {(setShowModal ? modalState : internalShowModal) && (
         <>

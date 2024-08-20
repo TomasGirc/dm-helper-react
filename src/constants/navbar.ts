@@ -30,4 +30,9 @@ export const navBarItems = [
     text: "Test",
     href: "/test",
   },
+  {
+    icon: "",
+    text: "Map marker",
+    href: "/map",
+  },
 ];

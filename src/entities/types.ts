@@ -68,10 +68,11 @@ export interface SubMenuItemProps extends Omit<SidebarItemProps, "expanded"> {
 }
 
 export interface ModalComponentProps {
-  title: string;
+  title?: string;
   colorBg?: string;
   colorTxt?: string;
   modalState?: boolean;
   setShowModal?: React.Dispatch<React.SetStateAction<boolean>>; // Optional now
   content: ReactNode;
+  showButton?: boolean;
 }
