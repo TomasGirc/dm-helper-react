@@ -12,7 +12,6 @@ export default function CityDetails({
   const { data: city, isLoading } = useQuery({
     queryFn: () => fetchSingleCity(params.cityId),
     queryKey: ["city"],
-    staleTime: Infinity,
   });
   if (isLoading || !city) {
     return <div>Loading...</div>;

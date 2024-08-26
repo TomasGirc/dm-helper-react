@@ -13,20 +13,50 @@ export type regionType = {
   _id?: string;
   name: string;
   locations: locationType[];
+  npc: npcType[];
   description: string;
+  comment: commentType[];
+  image?: string
 };
 
 export type locationType = {
   _id?: string;
   name: string;
   description: string;
-  npc?: npcType[];
+  npc: npcType[];
+  top: number;
+  left: number;
+  image: string;
+  quest: questType[];
+  region: regionType;
+  comment: commentType[];
 }
 
 export type npcType = {
   _id?: string;
   name: string;
   description: string;
+}
+
+export type commentType = {
+  author: userType,
+  comment: string,
+  emoticon: string
+}
+
+export type userType = {
+  username: string,
+  preferredName: string,
+  image?: string
+}
+
+export type questType = {
+  name: string,
+  description: string,
+  reward: string,
+  locations: locationType[],
+  npc: npcType[],
+  comment: commentType
 }
 
 export type citySize = "Village" | "City" | "Capital";

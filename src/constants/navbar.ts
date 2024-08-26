@@ -9,6 +9,11 @@ export const navBarItems = [
     subMenu: [
       {
         icon: "",
+        text: "Regions",
+        href: "/region",
+      },
+      {
+        icon: "",
         text: "Citys",
         href: "/city",
       },

@@ -16,7 +16,6 @@ const City = () => {
   const { data: city, isLoading } = useQuery({
     queryFn: () => fetchCitys(),
     queryKey: ["citys"],
-    staleTime: Infinity,
   });
 
   const listOfCitys = city

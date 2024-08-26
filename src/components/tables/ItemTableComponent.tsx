@@ -14,7 +14,6 @@ const ItemTableComponent = () => {
   const { data: items, isLoading } = useQuery({
     queryFn: () => fetchItems(),
     queryKey: ["items"],
-    staleTime: Infinity, //do not refresh data
   });
 
   const { mutateAsync: deleteItemMutation } = useMutation({

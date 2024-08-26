@@ -9,26 +9,52 @@ export const locationProxy: locationType[] = [{
     _id: "1",
     name: "First location",
     description: "Location description 1",
+    npc: [],
+    top: 0,
+    left: 0,
+    image: "",
+    quest: [],
+    region: {
+        _id: undefined,
+        name: "",
+        locations: [],
+        npc: [],
+        description: "",
+        comment: [],
+        image: undefined
+    },
+    comment: []
 },{
     _id: "2",
     name: "Second location",
     description: "Location description 2",
-    npc: npcProxy
+    npc: npcProxy,
+    top: 0,
+    left: 0,
+    image: "",
+    quest: [],
+    region: {
+        _id: undefined,
+        name: "",
+        locations: [],
+        npc: [],
+        description: "",
+        comment: [],
+        image: undefined
+    },
+    comment: []
 }]
 
 
 
-export const regionProxy: regionType[] = [{
+export const regionProxy: regionType = {
     _id: "1",
     name: "First region",
     locations: locationProxy,
-    description: "Region description 1"
-},{
-    _id: "2",
-    name: "Second region",
-    locations: locationProxy,
-    description: "Region description 2"
-}]
+    description: "Region description 1",
+    npc: [],
+    comment: []
+}
 
 export const sizeProxy: citySize[] = ["Village", "City" , "Capital"]
 
