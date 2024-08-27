@@ -28,7 +28,7 @@ export type locationType = {
   left: number;
   image: string;
   quest: questType[];
-  region: regionType;
+  region: regionType | string;
   comment: commentType[];
 }
 

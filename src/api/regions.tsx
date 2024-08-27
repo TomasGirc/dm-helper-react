@@ -35,3 +35,13 @@ export const addRegion = async (data: regionType) => {
     })
     .finally(() => fetchRegions());
 };
+
+export const updateRegion = async (id: string, data: regionType) => {
+  await fetch(`${requestRegions + "/" + id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};

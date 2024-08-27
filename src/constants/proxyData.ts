@@ -5,7 +5,7 @@ export const npcProxy: npcType[] = [{
     description: "First npc",
 }]
 
-export const locationProxy: locationType[] = [{
+export const locationProxy: locationType = {
     _id: "1",
     name: "First location",
     description: "Location description 1",
@@ -24,26 +24,7 @@ export const locationProxy: locationType[] = [{
         image: undefined
     },
     comment: []
-},{
-    _id: "2",
-    name: "Second location",
-    description: "Location description 2",
-    npc: npcProxy,
-    top: 0,
-    left: 0,
-    image: "",
-    quest: [],
-    region: {
-        _id: undefined,
-        name: "",
-        locations: [],
-        npc: [],
-        description: "",
-        comment: [],
-        image: undefined
-    },
-    comment: []
-}]
+}
 
 
 

@@ -22,9 +22,9 @@ const LocationModal = ({
     queryKey: ["singleLocation"],
   });
 
-  const [name, setName] = React.useState<string>(data.name);
+  const [name, setName] = React.useState<string>(data.name || "");
   const [description, setDescription] = React.useState<string>(
-    data.description
+    data.description || ""
   );
   const [npc, setNpc] = React.useState<npcType[]>(data.npc);
   const [quest, setQuest] = React.useState<questType[]>(data.quest);
@@ -70,15 +70,19 @@ const LocationModal = ({
         </div>
         <div>
           {singleLocation?.npc.map((npc) => (
-            <p>{npc.name}</p>
+            <p>NPC: {npc.name}</p>
           ))}
         </div>
         <div>
           {singleLocation?.quest.map((quest) => (
-            <p>{quest.name}</p>
+            <p>Quest: {quest.name}</p>
           ))}
         </div>
-        <div>{singleLocation?.region.name}</div>
+        {singleLocation?.region && (
+          <div>
+            <p>Region: {singleLocation?.region.name}</p>
+          </div>
+        )}
         <div>
           {singleLocation?.comment.map((comments) => (
             <p>{comments.comment}</p>

@@ -14,7 +14,6 @@ function layout({
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        {/* <Navbar content={children} /> */}
         <MakeSidebar content={children} />
       </QueryClientProvider>
     </>

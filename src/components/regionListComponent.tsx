@@ -25,7 +25,10 @@ const RegionListComponent = () => {
     <div key={index} className="flex flex-col">
       <p>{region.name}</p>
       <div>
-        <MapComponent locationList={region.locations}></MapComponent>
+        <MapComponent
+          locationList={region.locations}
+          regionName={region}
+        ></MapComponent>
         <ButtonComponent
           children={"Delete"}
           onClick={() => deleteRegionMutation(region._id || "")}

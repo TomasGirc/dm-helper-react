@@ -13,7 +13,7 @@ const CityModal = ({
 }) => {
   const queryClient = useQueryClient();
   const [name, setName] = React.useState<string>("");
-  const [region, setRegion] = React.useState<string>(regionProxy[0].name);
+  const [region, setRegion] = React.useState<string>(regionProxy.name);
   const [size, setSize] = React.useState<citySize>("Village");
   const [population, setPopulation] = React.useState<number>(100);
   const [description, setDescription] = React.useState<string>("");
@@ -64,15 +64,13 @@ const CityModal = ({
           <div>
             <LabelComponent text="Select a region" />
             <select id="regions" className="input-style">
-              {regionProxy.map((v) => (
-                <option
-                  value={v.name}
-                  key={v.name}
-                  onClick={() => setRegion(v.name)}
-                >
-                  {v.name}
-                </option>
-              ))}
+              <option
+                value={regionProxy.name}
+                key={regionProxy.name}
+                onClick={() => setRegion(regionProxy.name)}
+              >
+                {regionProxy.name}
+              </option>
             </select>
           </div>
           <div>
