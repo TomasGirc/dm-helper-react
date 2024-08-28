@@ -19,6 +19,9 @@ const LocationListComponent = () => {
     },
   });
 
+  if (isLoading) {
+    return <p>...Loading</p>;
+  }
   const locationList = locations?.map((location: locationType, index) => (
     <div key={index} className="flex flex-col">
       {location.name}
@@ -30,10 +33,6 @@ const LocationListComponent = () => {
       </div>
     </div>
   ));
-
-  if (isLoading) {
-    return <p>...Loading</p>;
-  }
 
   return <>{locationList}</>;
 };
