@@ -14,6 +14,11 @@ export const navBarItems = [
       },
       {
         icon: "",
+        text: "Locations",
+        href: "/location",
+      },
+      {
+        icon: "",
         text: "Citys",
         href: "/city",
       },

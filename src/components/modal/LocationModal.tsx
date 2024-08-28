@@ -4,11 +4,11 @@ import {
   locationType,
   npcType,
   questType,
-  regionType,
 } from "src/entities/types";
 import LabelComponent from "../ux/LabelComponent";
-import { useQuery } from "@tanstack/react-query";
-import { fetchSingleLocation } from "src/api/locations";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { deleteLocation, fetchSingleLocation } from "src/api/locations";
+import { ButtonComponent } from "../ux/ButtonComponent";
 
 const LocationModal = ({
   setShowModal,
@@ -17,9 +17,18 @@ const LocationModal = ({
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   data: locationType;
 }) => {
+  const queryClient = useQueryClient();
   const { data: singleLocation, isLoading } = useQuery({
     queryFn: () => fetchSingleLocation(data._id || ""),
-    queryKey: ["singleLocation"],
+    queryKey: ["locations"],
+  });
+
+  const { mutateAsync: deleteLocationMutation } = useMutation({
+    mutationFn: deleteLocation,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["locations"]);
+      setShowModal(false);
+    },
   });
 
   const [name, setName] = React.useState<string>(data.name || "");
@@ -28,7 +37,6 @@ const LocationModal = ({
   );
   const [npc, setNpc] = React.useState<npcType[]>(data.npc);
   const [quest, setQuest] = React.useState<questType[]>(data.quest);
-  const [region, setRegion] = React.useState<regionType>(data.region);
   const [comments, setComment] = React.useState<commentType[]>(data.comment);
 
   if (isLoading) {
@@ -69,14 +77,12 @@ const LocationModal = ({
           ></textarea>
         </div>
         <div>
-          {singleLocation?.npc.map((npc) => (
-            <p>NPC: {npc.name}</p>
-          ))}
+          {singleLocation?.npc &&
+            singleLocation?.npc.map((npc) => <p>NPC: {npc.name}</p>)}
         </div>
         <div>
-          {singleLocation?.quest.map((quest) => (
-            <p>Quest: {quest.name}</p>
-          ))}
+          {singleLocation?.quest &&
+            singleLocation?.quest.map((quest) => <p>Quest: {quest.name}</p>)}
         </div>
         {singleLocation?.region && (
           <div>
@@ -84,9 +90,19 @@ const LocationModal = ({
           </div>
         )}
         <div>
-          {singleLocation?.comment.map((comments) => (
-            <p>{comments.comment}</p>
-          ))}
+          {singleLocation?.comment &&
+            singleLocation?.comment.map((comments) => (
+              <p>{comments.comment}</p>
+            ))}
+        </div>
+        <div className="flex justify-end ">
+          <ButtonComponent
+            children={"Delete"}
+            onClick={() => deleteLocationMutation(data._id || "")}
+          ></ButtonComponent>
+          <ButtonComponent type="submit" onClick={() => setShowModal(false)}>
+            Submit
+          </ButtonComponent>
         </div>
       </form>
     </div>

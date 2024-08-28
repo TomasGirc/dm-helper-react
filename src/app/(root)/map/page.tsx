@@ -11,12 +11,10 @@ const MapMarkers = () => {
     {
       top: 10,
       left: 50,
-      status: "blue",
     },
     {
       top: 90,
       left: 50,
-      status: "blue",
     },
   ]);
   const [active, setActive] = useState<boolean>(false);
@@ -24,7 +22,6 @@ const MapMarkers = () => {
   const [selectedMarker, setSelectedMarker] = useState<Marker>({
     top: 10,
     left: 50,
-    status: "blue",
   });
   return (
     <>
@@ -47,7 +44,6 @@ const MapMarkers = () => {
             {
               top: Math.floor(Math.random() * 100),
               left: Math.floor(Math.random() * 100),
-              status: "red",
             },
           ])
         }

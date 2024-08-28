@@ -35,18 +35,7 @@ const CreateLocationModal = ({
     e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
     e.preventDefault();
-    // console.log({
-    //   name,
-    //   description,
-    //   npc: [],
-    //   top: data.top,
-    //   left: data.left,
-    //   image: "",
-    //   quest: [],
-    //   region: region._id,
-    //   comment: [],
-    // });
-    // console.log([...region.locations, "dfgsfgdfgdfg5466"]);
+
     addLocationMutation({
       name,
       description,
@@ -92,6 +81,7 @@ const CreateLocationModal = ({
             placeholder="Write your thoughts here..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           ></textarea>
         </div>
         <div className="flex justify-end ">

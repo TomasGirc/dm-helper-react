@@ -23,7 +23,7 @@ const City = () => {
       filter.name.toLocaleLowerCase().includes(cityFilter.toLocaleLowerCase())
     )
     .map((city, index) => (
-      <Link href={`/city/${city._id}`}>
+      <Link href={`/city/${city._id}`} key={index}>
         <CityCard city={city} key={index + city.name} />
       </Link>
     ));

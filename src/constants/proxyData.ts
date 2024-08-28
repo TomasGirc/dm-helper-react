@@ -31,7 +31,7 @@ export const locationProxy: locationType = {
 export const regionProxy: regionType = {
     _id: "1",
     name: "First region",
-    locations: locationProxy,
+    locations: [locationProxy],
     description: "Region description 1",
     npc: [],
     comment: []

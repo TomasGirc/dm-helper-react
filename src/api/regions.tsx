@@ -8,7 +8,7 @@ export const fetchRegions = async (): Promise<regionType[]> => {
   return await response.json();
 };
 
-export const fetchSingleRegion = async (id: string): Promise<cityType> => {
+export const fetchSingleRegion = async (id: string): Promise<regionType> => {
   const response = await fetch(`${requestRegions}/${id}`, {
     method: "GET",
   });
