@@ -15,13 +15,14 @@ const LocationListComponent = () => {
   const { mutateAsync: deleteLocationMutation } = useMutation({
     mutationFn: deleteLocation,
     onSuccess: () => {
-      queryClient.invalidateQueries(["locationsList"]);
+      queryClient.invalidateQueries({ queryKey: ["locationsList"] });
     },
   });
 
   if (isLoading) {
     return <p>...Loading</p>;
   }
+
   const locationList = locations?.map((location: locationType, index) => (
     <div key={index} className="flex flex-col">
       {location.name}

@@ -32,6 +32,16 @@ export const navBarItems = [
         text: "Character",
         href: "/character",
       },
+      {
+        icon: "",
+        text: "Quest",
+        href: "/quest",
+      },
+      {
+        icon: "",
+        text: "Npc",
+        href: "/npc",
+      },
     ],
     text: "Wiki",
   },

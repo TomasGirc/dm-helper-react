@@ -35,27 +35,32 @@ export type locationType = {
 export type npcType = {
   _id?: string;
   name: string;
+  locations: locationType[];
   description: string;
+  region: regionType[];
+  quest: questType[];
+  comment: commentType[];
 }
 
 export type commentType = {
-  author: userType,
-  comment: string,
+  author: userType;
+  comment: string;
   emoticon: string
 }
 
 export type userType = {
-  username: string,
-  preferredName: string,
+  username: string;
+  preferredName: string;
   image?: string
 }
 
 export type questType = {
-  name: string,
-  description: string,
-  reward: string,
-  locations: locationType[],
-  npc: npcType[],
+  _id?: string;
+  name: string;
+  description: string;
+  reward: string;
+  locations: locationType[];
+  npc: npcType[];
   comment: commentType
 }
 
