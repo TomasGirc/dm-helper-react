@@ -9,7 +9,7 @@ export default function CityCard({ city }: { city: cityType }) {
   const { mutateAsync: deleteCitysMutation } = useMutation({
     mutationFn: deleteCitys,
     onSuccess: () => {
-      queryClient.invalidateQueries(["citys"]);
+      queryClient.invalidateQueries({ queryKey: ["citys"] });
     },
   });
 
