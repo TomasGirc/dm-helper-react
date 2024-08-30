@@ -3,9 +3,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteRegion, fetchRegions } from "src/api/regions";
 import React from "react";
-import MapComponent from "./ux/map/MapComponent";
-import { ButtonComponent } from "./ux/ButtonComponent";
 import { regionType } from "src/entities/types";
+import MapComponent from "../ux/map/MapComponent";
+import { ButtonComponent } from "../ux/ButtonComponent";
 
 const RegionListComponent = () => {
   const queryClient = useQueryClient();

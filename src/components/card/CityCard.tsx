@@ -1,7 +1,7 @@
-import { cityType } from "../entities/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCitys } from "src/api/citys";
-import { ButtonComponent } from "./ux/ButtonComponent";
+import { cityType } from "src/entities/types";
+import { ButtonComponent } from "../ux/ButtonComponent";
 
 export default function CityCard({ city }: { city: cityType }) {
   const queryClient = useQueryClient();

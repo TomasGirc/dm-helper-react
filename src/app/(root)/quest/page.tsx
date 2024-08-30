@@ -1,5 +1,5 @@
 import React from "react";
-import QuestListComponent from "src/components/QuestListComponent";
+import QuestListComponent from "src/components/list/QuestListComponent";
 
 const Quest = () => {
   return <QuestListComponent />;

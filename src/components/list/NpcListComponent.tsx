@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { fetchNpc } from "src/api/npc";
 import { npcType } from "src/entities/types";
-import CardNpcComponent from "./card/CardNpcComponent";
 import Link from "next/link";
+import CardNpcComponent from "../card/CardNpcComponent";
 
 const NpcListComponent = () => {
   const { data: npc, isLoading } = useQuery({

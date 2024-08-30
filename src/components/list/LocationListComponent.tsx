@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { deleteLocation, fetchLocations } from "src/api/locations";
 import { locationType } from "src/entities/types";
-import { ButtonComponent } from "./ux/ButtonComponent";
+import { ButtonComponent } from "../ux/ButtonComponent";
 
 const LocationListComponent = () => {
   const queryClient = useQueryClient();

@@ -2,8 +2,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { deleteQuest, fetchQuest } from "src/api/quest";
-import { ButtonComponent } from "./ux/ButtonComponent";
+
 import { questType } from "src/entities/types";
+import { ButtonComponent } from "../ux/ButtonComponent";
 
 const QuestListComponent = () => {
   const queryClient = useQueryClient();

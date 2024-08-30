@@ -1,5 +1,5 @@
 import React from "react";
-import LocationListComponent from "src/components/LocationListComponent";
+import LocationListComponent from "src/components/list/LocationListComponent";
 
 const Location = () => {
   return (

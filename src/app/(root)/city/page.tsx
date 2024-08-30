@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import CityCard from "src/components/CityCard";
+
 import { searchByName } from "src/helpers";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCitys } from "src/api/citys";
 import CityModal from "src/components/modal/CityModal";
 import ModalComponent from "src/components/modal/ModalComponent";
 import Link from "next/link";
+import CityCard from "src/components/card/CityCard";
 
 const City = () => {
   const [showModal, setShowModal] = useState(false);
