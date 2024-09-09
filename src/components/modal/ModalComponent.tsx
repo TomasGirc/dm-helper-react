@@ -26,6 +26,7 @@ export default function ModalComponent({
     } else {
       setInternalShowModal(false);
     }
+    document.body.style.overflow = "auto";
   };
 
   const handleOpenModal = () => {
@@ -34,6 +35,7 @@ export default function ModalComponent({
     } else {
       setShowModal(true);
     }
+    document.body.style.overflow = "hidden";
   };
 
   const handleClickOutside = () => {

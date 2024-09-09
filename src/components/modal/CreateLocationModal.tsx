@@ -44,7 +44,7 @@ const CreateLocationModal = ({
       left: data.left,
       image: "",
       quest: [],
-      region: region._id || "",
+      region,
       comment: [],
     });
   };

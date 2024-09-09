@@ -1,14 +1,14 @@
 import React from "react";
-import {
-  commentType,
-  locationType,
-  npcType,
-  questType,
-} from "src/entities/types";
+import { commentType, locationType } from "src/entities/types";
 import LabelComponent from "../ux/LabelComponent";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteLocation, fetchSingleLocation } from "src/api/locations";
+import {
+  deleteLocation,
+  fetchSingleLocation,
+  updateLocation,
+} from "src/api/locations";
 import { ButtonComponent } from "../ux/ButtonComponent";
+import CommentComponent from "../ux/CommentComponent";
 
 const LocationModal = ({
   setShowModal,
@@ -31,20 +31,24 @@ const LocationModal = ({
     },
   });
 
+  const { mutateAsync: updateLocationMutation } = useMutation({
+    mutationFn: updateLocation,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["locations"]);
+    },
+  });
+
   const [name, setName] = React.useState<string>(data.name || "");
   const [description, setDescription] = React.useState<string>(
     data.description || ""
   );
-  const [npc, setNpc] = React.useState<npcType[]>(data.npc);
-  const [quest, setQuest] = React.useState<questType[]>(data.quest);
-  const [comments, setComment] = React.useState<commentType[]>(data.comment);
 
   if (isLoading) {
     return <p>...Loading</p>;
   }
 
   return (
-    <div className="p-[24px]">
+    <div className="p-[24px] max-h-[80vh] overflow-auto">
       <form>
         <header>
           <legend>Edit location details</legend>
@@ -90,11 +94,20 @@ const LocationModal = ({
           </div>
         )}
         <div>
-          {singleLocation?.comment &&
-            singleLocation?.comment.map((comments) => (
-              <p>{comments.comment}</p>
-            ))}
+          {singleLocation?.comment && (
+            <CommentComponent
+              commentList={singleLocation?.comment}
+              onSubmit={(value: commentType) => (
+                data.comment.push(value),
+                updateLocationMutation({
+                  id: data._id || "",
+                  data: data,
+                })
+              )}
+            />
+          )}
         </div>
+
         <div className="flex justify-end ">
           <ButtonComponent
             children={"Delete"}

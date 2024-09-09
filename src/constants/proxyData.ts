@@ -1,8 +1,12 @@
-import { citySize, locationType, npcType, regionType } from "src/entities/types"
+import { citySize, commentType, locationType, npcType, regionType } from "src/entities/types"
 
 export const npcProxy: npcType[] = [{
     name: "Firstly",
     description: "First npc",
+    locations: [],
+    region: [],
+    quest: [],
+    comment: []
 }]
 
 export const locationProxy: locationType = {
@@ -24,6 +28,16 @@ export const locationProxy: locationType = {
         image: undefined
     },
     comment: []
+}
+
+export const commentProxy: commentType = {
+    author: {
+        username: "",
+        preferredName: "",
+        image: undefined
+    },
+    comment: "",
+    emoticon: ""
 }
 
 

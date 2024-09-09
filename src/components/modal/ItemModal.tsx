@@ -101,7 +101,7 @@ export default function ItemModal({
           <div>
             <LabelComponent text="Keywords" />
             <MultiSelectDropdown
-              formFieldName={"countries"}
+              formFieldName={"keywords"}
               options={keywordProxy}
               onChange={(selectedOptions) => {
                 const keywordMap: keywordsType[] = selectedOptions.map(

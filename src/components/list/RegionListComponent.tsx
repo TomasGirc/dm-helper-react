@@ -17,7 +17,7 @@ const RegionListComponent = () => {
   const { mutateAsync: deleteRegionMutation } = useMutation({
     mutationFn: deleteRegion,
     onSuccess: () => {
-      queryClient.invalidateQueries(["regions"]);
+      queryClient.invalidateQueries({ queryKey: ["regions"] });
     },
   });
 

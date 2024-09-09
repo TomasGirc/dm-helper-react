@@ -37,3 +37,23 @@ export const addLocation = async (data: locationType) => {
     })
     .finally(() => fetchLocations());
 };
+
+export const updateLocation = async ({
+  id,
+  data,
+}: {
+  id: string;
+  data: locationType;
+}) => {
+  await fetch(`${requestLocations}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .catch((e) => {
+      console.error("Update region throw", e);
+    })
+    .finally(() => fetchLocations());
+};

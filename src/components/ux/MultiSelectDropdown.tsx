@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import ClickOutside from "../helpers/ClickOutside";
 
 export default function MultiSelectDropdown({
@@ -20,7 +20,7 @@ export default function MultiSelectDropdown({
   const [searchFilter, setSearchFilter] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     const option = e.target.value;
 

@@ -28,7 +28,7 @@ export type locationType = {
   left: number;
   image: string;
   quest: questType[];
-  region: regionType & string;
+  region: regionType;
   comment: commentType[];
 }
 
@@ -43,9 +43,12 @@ export type npcType = {
 }
 
 export type commentType = {
+  _id?: string;
   author: userType;
   comment: string;
-  emoticon: string
+  emoticon: string;
+  createdAt?: string;
+  updatetAt?: string;
 }
 
 export type userType = {

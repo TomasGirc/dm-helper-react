@@ -77,7 +77,9 @@ const MapComponent = ({
               <div
                 key={index}
                 onClick={() => {
-                  setShowModal1(true), setModalData(location);
+                  setShowModal1(true),
+                    setModalData(location),
+                    (document.body.style.overflow = "hidden");
                 }}
               >
                 <p className="font-bold">{location.name}</p>
