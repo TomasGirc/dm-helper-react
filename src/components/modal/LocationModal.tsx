@@ -9,6 +9,7 @@ import {
 } from "src/api/locations";
 import { ButtonComponent } from "../ux/ButtonComponent";
 import CommentComponent from "../ux/CommentComponent";
+import ListCompare from "./ListCompare";
 
 const LocationModal = ({
   setShowModal,
@@ -17,6 +18,10 @@ const LocationModal = ({
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   data: locationType;
 }) => {
+  const [name, setName] = React.useState<string>(data.name || "");
+  const [description, setDescription] = React.useState<string>(
+    data.description || ""
+  );
   const queryClient = useQueryClient();
   const { data: singleLocation, isLoading } = useQuery({
     queryFn: () => fetchSingleLocation(data._id || ""),
@@ -26,7 +31,7 @@ const LocationModal = ({
   const { mutateAsync: deleteLocationMutation } = useMutation({
     mutationFn: deleteLocation,
     onSuccess: () => {
-      queryClient.invalidateQueries(["locations"]);
+      queryClient.invalidateQueries({ queryKey: ["locations"] });
       setShowModal(false);
     },
   });
@@ -34,14 +39,9 @@ const LocationModal = ({
   const { mutateAsync: updateLocationMutation } = useMutation({
     mutationFn: updateLocation,
     onSuccess: () => {
-      queryClient.invalidateQueries(["locations"]);
+      queryClient.invalidateQueries({ queryKey: ["locations"] });
     },
   });
-
-  const [name, setName] = React.useState<string>(data.name || "");
-  const [description, setDescription] = React.useState<string>(
-    data.description || ""
-  );
 
   if (isLoading) {
     return <p>...Loading</p>;
@@ -81,8 +81,7 @@ const LocationModal = ({
           ></textarea>
         </div>
         <div>
-          {singleLocation?.npc &&
-            singleLocation?.npc.map((npc) => <p>NPC: {npc.name}</p>)}
+          {singleLocation?.npc && <ListCompare data={singleLocation?.npc} />}
         </div>
         <div>
           {singleLocation?.quest &&

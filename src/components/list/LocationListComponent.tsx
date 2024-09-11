@@ -4,6 +4,7 @@ import React from "react";
 import { deleteLocation, fetchLocations } from "src/api/locations";
 import { locationType } from "src/entities/types";
 import { ButtonComponent } from "../ux/ButtonComponent";
+import Link from "next/link";
 
 const LocationListComponent = () => {
   const queryClient = useQueryClient();
@@ -24,15 +25,17 @@ const LocationListComponent = () => {
   }
 
   const locationList = locations?.map((location: locationType, index) => (
-    <div key={index} className="flex flex-col">
-      {location.name}
-      <div>
-        <ButtonComponent
-          children={"Delete"}
-          onClick={() => deleteLocationMutation(location._id || "")}
-        ></ButtonComponent>
+    <Link href={`/location/${location._id}`} key={index}>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="mr-[12px]">{location.name}</div>
+        <div>
+          <ButtonComponent
+            children={"Delete"}
+            onClick={() => deleteLocationMutation(location._id || "")}
+          ></ButtonComponent>
+        </div>
       </div>
-    </div>
+    </Link>
   ));
 
   return <>{locationList}</>;

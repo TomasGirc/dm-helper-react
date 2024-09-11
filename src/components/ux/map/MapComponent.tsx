@@ -7,6 +7,7 @@ import ModalComponent from "src/components/modal/ModalComponent";
 import { locationProxy } from "src/constants/proxyData";
 import CreateLocationModal from "src/components/modal/CreateLocationModal";
 import LocationModal from "src/components/modal/LocationModal";
+import Link from "next/link";
 
 const MapComponent = ({
   locationList,
@@ -22,8 +23,6 @@ const MapComponent = ({
 
   const [filterName, setFilter] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
-  const [showModal1, setShowModal1] = useState(false);
-  const [modalData, setModalData] = useState<locationType>(locationProxy);
 
   return (
     <div className="my-[24px]">
@@ -74,24 +73,12 @@ const MapComponent = ({
                   .includes(filterName.toLocaleLowerCase())
             )
             .map((location, index) => (
-              <div
-                key={index}
-                onClick={() => {
-                  setShowModal1(true),
-                    setModalData(location),
-                    (document.body.style.overflow = "hidden");
-                }}
-              >
-                <p className="font-bold">{location.name}</p>
-              </div>
+              <Link href={`/location/${location._id}`} key={index}>
+                <div key={index}>
+                  <p className="font-bold">{location.name}</p>
+                </div>
+              </Link>
             ))}
-          <ModalComponent
-            modalState={showModal1}
-            setShowModal={setShowModal1}
-            content={
-              <LocationModal setShowModal={setShowModal1} data={modalData} />
-            }
-          ></ModalComponent>
         </div>
       </div>
     </div>
